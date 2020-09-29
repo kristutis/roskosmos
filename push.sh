@@ -1,7 +1,7 @@
 #!/bin/bash -e
 if [[ $# != 1 ]]
 then
-	echo "Naudojimas: ./push.sh \"commit_message\""
+	echo "Naudojimas: ./push.sh \"commit message\""
 	echo "Pvz:"
 	echo "./push.sh \"prideta nauja funkcija\""
 	exit 1
