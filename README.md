@@ -1,1 +1,2 @@
-# Informaciniu sistemu projektas
+# Informacinių sistemų projektas
+Komanda Roskosmos
