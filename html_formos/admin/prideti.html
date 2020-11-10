@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- head definitions go here -->
+    </head>
+    <body>        
+        <h1>Prekės pridėjimas</h1>
+
+        <form action="admin.html">
+            <input type="submit" value="Į pradžią" />
+        </form>
+        
+        <hr>      
+        
+
+        <p>
+            
+        </p>
+
+        <div style="position: relative;height: 610px;">
+			<label for="img">Select image:</label>
+			<input type="file" id="img" name="img" accept="image/*">
+        <div style="position: absolute;left: auto;">
+            <img  src="https://archive.org/download/no-photo-available/no-photo-available.png" width="600" height="400">
+        </div>
+
+        <div style="position: absolute;left: 650px;">
+            <h2>Prekės pavadinimas:</h2>
+			<input><br>
+            <h4>Prekės trumpas aprašymas</h4>
+			<input><br>
+            <h5>Aprašymas<h5>
+            <textarea style="height: 150px; width: 400px" rows="4"></textarea><br>
+			<label>Kaina:<label>
+			<input type="number"><br>
+			<label>Kiekis sandely:<label>
+			<input type="number"><br>
+			<form action="sandelys.html">
+				<input type="submit" value="Talpinti preke">
+			</form>
+        </div>
+    </div>
+    </body>
+</html>
