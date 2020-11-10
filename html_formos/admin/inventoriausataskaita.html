@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- head definitions go here -->
+    </head>
+    <body>        
+
+              <h1>Inventoriaus ataskaita</h1>              
+          
+		  
+				<table>
+					<tr>
+						<td><label>Pradžios data</label></td>
+						<td><input type="date" placeholder="Įrašykite patikros datą" name="test" id="test" required></td>
+					</tr>
+					<tr>
+						<td><label>Pabaigos data</label></td>
+						<td><input type="date" placeholder="Įrašykite patikros datą" name="test" id="test" required></td>
+					</tr>
+				</table><br>
+				
+				<button onclick="myFunction()">Pateikti ataskaitą</button>
+
+				<script>
+				function myFunction() {
+				  var x = document.getElementById("mytable");
+				  if (x.style.display === "none") {
+					x.style.display = "block";
+				  } else {
+					x.style.display = "none";
+				  }
+				}
+				</script>
+
+              <table id="mytable" visibility="false">
+                <tr>
+                    <td><label><b>Pavadinimas</b></label></td>
+                    <td><label><b>Aprašas</b></label></td>
+                </tr>
+                <tr>
+                    <td><label>Suoliukas</label></td>
+                    <td><label>Atlikta nauja patikra</label></td>
+                </tr>
+                <tr>
+                    <td><label>Štanga</label></td>
+                    <td><label>Pakeista būsena: Netinkama naudoti</label></td>
+                </tr>
+				<tr>
+                    <td><label>Štanga</label></td>
+                    <td><label>Pakeista būsena: Išvežta remontui</label></td>
+                </tr>
+				<tr>
+                    <td><label>Štanga</label></td>
+                    <td><label>Atlikta nauja patikra</label></td>
+                </tr>
+				<tr>
+                    <td><label>Štanga</label></td>
+                    <td><label>Pakeista būsena: Eksplotuojama</label></td>
+                </tr>
+            </table>
+          
+          <p>
+
+          </p>		
+	
+		<form action="admin.html">
+            <input type="submit" value="Į administratoriaus meniu" />
+        </form>
+		<form action="inventoriauskatalogas.html">
+            <input type="submit" value="Atgal" />
+        </form>
+    </body>
+</html>

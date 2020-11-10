@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- head definitions go here -->
+    </head>
+    <body>        
+        <form action="inventoriauskatalogas.html">
+
+              <h1>Inventoriaus redagavimo forma</h1>              
+          
+              <table>
+                <tr>
+                    <td><label for="Name"><b>Pavadinimas</b></label></td>
+                    <td><input type="text" placeholder="Įrašykite pavadinimą" name="pav" id="pav" required></td>
+                </tr>
+                <tr>
+                    <td><label for="Status"><b>Statusas</b></label></td>
+                    <td><input type="text" placeholder="Nurodykite būseną" name="stat" id="stat" required></td>
+                </tr>
+                <tr>
+                    <td><label for="DateAq"><b>Įsigijimo data</b></label></td>
+                    <td><input type="date" placeholder="Įrašykite įsigijimo datą" name="aq" id="aq" required></td>
+                </tr>
+                <tr>
+                    <td><label for="DateTest"><b>Patikros data</b></label></td>
+                    <td><input type="date" placeholder="Įrašykite patikros datą" name="test" id="test" required></td>
+                </tr>
+            </table>
+
+            <button type="submit" class="savebtn">Išsaugoti pakeitimus</button>
+
+          </form>
+          <p>
+
+          </p>
+          <form action="admin.html">
+            <input type="submit" value="Į administratoriaus meniu" />
+        </form>
+		<form action="inventoriauskatalogas.html">
+            <input type="submit" value="Atgal" />
+        </form>
+    </body>
+</html>
