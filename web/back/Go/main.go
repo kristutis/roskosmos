@@ -30,7 +30,14 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
-//http://localhost:8000/api/clients/1
+//GET http://localhost:8000/api/clients/
+func getClients(w http.ResponseWriter, r *http.Request) {
+	clients := getClientsFromDb()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(clients)
+}
+
+//GET http://localhost:8000/api/clients/1
 func getClientById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
@@ -44,14 +51,7 @@ func getClientById(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&Client{})
 }
 
-//http://localhost:8000/api/clients/
-func getClients(w http.ResponseWriter, r *http.Request) {
-	clients := getClientsFromDb()
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(clients)
-}
-
-//http://localhost:8000/api/users
+//GET http://localhost:8000/api/users
 func getUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
@@ -65,13 +65,14 @@ func getUserById(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&User{})
 }
 
-//http://localhost:8000/api/users/1
+//GET http://localhost:8000/api/users/1
 func getUsers(w http.ResponseWriter, r *http.Request) {
 	users := getUsersFromDb()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)
 }
 
+//POST http://localhost:8000/api/users
 func postUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
@@ -80,6 +81,7 @@ func postUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(success)
 }
 
+//PUT http://localhost:8000/api/users/1
 func updateUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
