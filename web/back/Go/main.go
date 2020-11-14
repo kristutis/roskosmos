@@ -18,6 +18,9 @@ func main() {
 	//users
 	r.HandleFunc("/api/users", getUsers).Methods("GET")
 	r.HandleFunc("/api/users/{id}", getUserById).Methods("GET")
+	r.HandleFunc("/api/users", postUser).Methods("POST")
+	r.HandleFunc("/api/users/{id}", updateUserById).Methods("PUT")
+	// r.HandleFunc("/api/users/{id}", deleteUserById).Methods("GET")
 
 	//clients
 	r.HandleFunc("/api/clients", getClients).Methods("GET")
@@ -66,4 +69,16 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 	users := getUsersFromDb()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)
+}
+
+func postUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var user User
+	_ = json.NewDecoder(r.Body).Decode(&user)
+	success := updateUserToDb(user)
+	json.NewEncoder(w).Encode(success)
+}
+
+func updateUserById(w http.ResponseWriter, r *http.Request) {
+
 }

@@ -57,6 +57,23 @@ func getUsersFromDb() []User {
 	return users
 }
 
+func updateUserToDb(user User) bool {
+	fmt.Println(user)
+	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" {
+		return false
+	}
+
+	db := getDb()
+	q, err := db.Prepare("INSERT INTO vartotojas (vardas, pavarde, email, slaptazodis) VALUES (?,?,?,?)")
+	if err != nil {
+		fmt.Println(err)
+		return false
+	} else {
+		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis)
+	}
+	return true
+}
+
 func getDb() *sql.DB {
 	db, err := sql.Open("mysql", "root:@tcp(localhost)/roskosmos?parseTime=true")
 	if err != nil {
