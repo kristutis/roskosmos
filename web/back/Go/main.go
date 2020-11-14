@@ -1,39 +1,53 @@
 //xampp, go
-//http://localhost:8000/api/users
+//go run .\database.go .\main.go
 package main
 
 import (
-	"database/sql"
 	"encoding/json"
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 )
 
-type User struct {
-	Id           int       `json:"id"`
-	Vardas       string    `json:"vardas"`
-	Pavarde      string    `json:"pavarde"`
-	Email        string    `json:"email"`
-	Slaptazodis  string    `json:"slaptazodis"`
-	ProfilioFoto string    `json:"profilio_foto"`
-	RegData      time.Time `json:"reg_date"`
-	ModData      time.Time `json:"modify_date"`
-}
-
 func main() {
 	r := mux.NewRouter()
 
+	//users
 	r.HandleFunc("/api/users", getUsers).Methods("GET")
 	r.HandleFunc("/api/user/{id}", getUserById).Methods("GET")
+
+	//clients
+	r.HandleFunc("/api/clients", getClients).Methods("GET")
+	r.HandleFunc("/api/client/{id}", getClientById).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
+//http://localhost:8000/api/clients
+func getClientById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	clients := getClientsFromDb()
+	for _, client := range clients {
+		if strconv.Itoa(client.UserId) == param["id"] {
+			json.NewEncoder(w).Encode(client)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(&User{})
+}
+
+//http://localhost:8000/api/clients/1
+func getClients(w http.ResponseWriter, r *http.Request) {
+	clients := getClientsFromDb()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(clients)
+}
+
+//http://localhost:8000/api/users
 func getUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
@@ -47,37 +61,9 @@ func getUserById(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&User{})
 }
 
+//http://localhost:8000/api/user/1
 func getUsers(w http.ResponseWriter, r *http.Request) {
 	users := getUsersFromDb()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)
-}
-
-func getUsersFromDb() []User {
-	db, err := sql.Open("mysql", "root:@tcp(localhost)/roskosmos?parseTime=true")
-	if err != nil {
-		panic(err)
-	}
-	// fmt.Println("connected to db")
-	defer db.Close()
-
-	var users []User
-
-	rows, err := db.Query("select * from vartotojas")
-	if err != nil {
-		panic(err)
-	}
-
-	for rows.Next() {
-		var user User
-		err = rows.Scan(&user.Id, &user.Vardas, &user.Pavarde, &user.Email,
-			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData)
-		// fmt.Println(user)
-		if err != nil {
-			panic(err)
-		}
-		users = append(users, user)
-	}
-
-	return users
 }
