@@ -14,6 +14,5 @@ type User struct {
 }
 
 type Client struct {
-	UserId int  `json:"id"`
-	User   User `json:"User"`
+	User User `json:"client"`
 }

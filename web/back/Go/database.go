@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -17,13 +18,15 @@ func getClientsFromDb() []Client {
 	}
 
 	for rows.Next() {
-		var client Client
 		var user User
 		err = rows.Scan(&user.Id, &user.Vardas, &user.Pavarde, &user.Email,
-			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData, &client.UserId)
+			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData, &user.Id)
 		if err != nil {
+			fmt.Println("cia error")
 			panic(err)
 		}
+
+		var client Client
 		client.User = user
 		clients = append(clients, client)
 	}
