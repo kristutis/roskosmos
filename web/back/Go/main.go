@@ -4,6 +4,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -75,10 +76,22 @@ func postUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	success := updateUserToDb(user)
+	success := insertUserToDb(user)
 	json.NewEncoder(w).Encode(success)
 }
 
 func updateUserById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 
+	param := mux.Vars(r)
+	var user User
+	_ = json.NewDecoder(r.Body).Decode(&user)
+	if strconv.Itoa(user.Id) != param["id"] {
+		json.NewEncoder(w).Encode(false)
+		fmt.Println("ids do not match")
+		return
+	}
+
+	success := updateUserToDb(user)
+	json.NewEncoder(w).Encode(success)
 }

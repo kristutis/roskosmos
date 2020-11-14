@@ -57,8 +57,8 @@ func getUsersFromDb() []User {
 	return users
 }
 
-func updateUserToDb(user User) bool {
-	fmt.Println(user)
+func insertUserToDb(user User) bool {
+	// fmt.Println(user)
 	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" {
 		return false
 	}
@@ -70,6 +70,23 @@ func updateUserToDb(user User) bool {
 		return false
 	} else {
 		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis)
+	}
+	return true
+}
+
+func updateUserToDb(user User) bool {
+	fmt.Println(user)
+	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" || user.ProfilioFoto == "" {
+		return false
+	}
+
+	db := getDb()
+	q, err := db.Prepare("UPDATE vartotojas SET vardas=?, pavarde=?, email=?, slaptazodis=?, profilio_foto=? where id=?")
+	if err != nil {
+		fmt.Println(err)
+		return false
+	} else {
+		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis, user.ProfilioFoto, user.Id)
 	}
 	return true
 }
