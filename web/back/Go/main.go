@@ -1,5 +1,5 @@
 //xampp, go
-//go run .\database.go .\main.go
+//go run .\database.go .\main.go .\user.go .\client.go
 package main
 
 import (
