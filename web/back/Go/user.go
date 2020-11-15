@@ -14,6 +14,7 @@ type User struct {
 	ProfilioFoto string    `json:"profilio_foto"`
 	RegData      time.Time `json:"reg_date"`
 	ModData      time.Time `json:"modify_date"`
+	Role         string    `json:"role"`
 }
 
 func getUsersFromDb() []User {
@@ -29,7 +30,7 @@ func getUsersFromDb() []User {
 	for rows.Next() {
 		var user User
 		err = rows.Scan(&user.Id, &user.Vardas, &user.Pavarde, &user.Email,
-			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData)
+			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData, &user.Role)
 		if err != nil {
 			panic(err)
 		}
@@ -58,17 +59,17 @@ func insertUserToDb(user User) bool {
 
 func updateUserToDb(user User) bool {
 	fmt.Println(user)
-	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" || user.ProfilioFoto == "" {
+	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" || user.ProfilioFoto == "" || user.Role == "" {
 		return false
 	}
 
 	db := getDb()
-	q, err := db.Prepare("UPDATE vartotojas SET vardas=?, pavarde=?, email=?, slaptazodis=?, profilio_foto=? where id=?")
+	q, err := db.Prepare("UPDATE vartotojas SET vardas=?, pavarde=?, email=?, slaptazodis=?, profilio_foto=?, role=? where id=?")
 	if err != nil {
 		fmt.Println(err)
 		return false
 	} else {
-		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis, user.ProfilioFoto, user.Id)
+		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis, user.ProfilioFoto, user.Role, user.Id)
 	}
 	return true
 }
