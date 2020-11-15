@@ -4,18 +4,18 @@ import './App.css';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Profile from './pages/profile';
+import Home from './pages/home';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar/> 
+        <NavBar /> 
           <Switch>
-            <Route path="/" exact />
+            <Route path="/" exact component={Home}/>
             <Route path="/profile" exact component={Profile} />
           </Switch>
-      </Router> 
-      <h1>hi</h1>
+      </Router>       
     </div>
   );
 }
