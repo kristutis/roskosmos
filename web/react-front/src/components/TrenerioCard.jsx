@@ -6,15 +6,16 @@ const fraze = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eve
 const vardas = "Dovydas"
 
 export default function DisplayAllTrenerisCards(props) {
-    const ts = props.treneriai
-    const t1 = ts.treneriukas1
-    const t2 = ts.treneriukas2
-    const t3 = ts.treneriukas3
-    console.log(t1)
+    const ts = props.treneriai //array
     return (
         <div className="ts container-fluid d-flex justify content-center">
             <div className="row">
-                <div className="col-md-4">
+                {ts.map(t => 
+                    <div className="col-md-4">
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
+                    </div>
+                    )}
+                {/* <div className="col-md-4">
                     <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
                 </div>
                 <div className="col-md-4">
@@ -43,7 +44,7 @@ export default function DisplayAllTrenerisCards(props) {
                 </div>
                 <div className="col-md-4">
                     <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
-                </div>
+                </div> */}
             </div>
         </div>
     )

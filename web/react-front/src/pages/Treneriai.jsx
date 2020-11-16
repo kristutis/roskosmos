@@ -23,7 +23,7 @@ export default function Treneriai() {
     }
 
 
-    var treneriukai = {treneriukas1, treneriukas2, treneriukas3}
+    var treneriukai = [treneriukas1, treneriukas2, treneriukas3]
     // https://thispersondoesnotexist.com/
     // Nemažink savo tikslų, didink pastangas.
     return (
