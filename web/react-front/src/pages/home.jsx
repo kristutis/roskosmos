@@ -4,9 +4,9 @@ import './Home.css'
 
 export default function Home() {
     return (
-        <div>     
+        <div class="home-container">     
             <video width="10" height="10" src={video} autoPlay loop muted />
-            <h1>hi</h1>
+            <h1>welcome, stranger</h1>
         </div>
     )
 }
