@@ -3,8 +3,8 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Profile from './pages/profile';
-import Home from './pages/home';
+import Profile from './pages/Profile';
+import Home from './pages/Home';
 
 function App() {
   return (
