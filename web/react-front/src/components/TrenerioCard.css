@@ -1,3 +1,14 @@
+.ts {
+    margin: auto;
+    /* border-color: green;
+    border-width: 10px;
+    border-style: solid; */
+}
+
+.row {
+    margin: auto;
+}
+
 .card-img-top{
     transform:scale(1);
     transition: transform 0.5s ease;

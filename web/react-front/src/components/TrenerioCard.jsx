@@ -6,17 +6,43 @@ const fraze = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eve
 const vardas = "Dovydas"
 
 export default function DisplayAllTrenerisCards(props) {
+    const ts = props.treneriai
+    const t1 = ts.treneriukas1
+    const t2 = ts.treneriukas2
+    const t3 = ts.treneriukas3
+    console.log(t1)
     return (
-        <div className="container-fluid d-flex justify content-center">
+        <div className="ts container-fluid d-flex justify content-center">
             <div className="row">
                 <div className="col-md-4">
-                    <TrenerioCard imgsrc={profiliofoto} title={vardas} text={fraze}/>
+                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
                 </div>
                 <div className="col-md-4">
-                    <TrenerioCard imgsrc={profiliofoto} title={vardas} text={fraze}/>
+                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
                 </div>
                 <div className="col-md-4">
-                    <TrenerioCard imgsrc={profiliofoto} title={vardas} text={fraze}/>
+                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
+                </div>
+                <div className="col-md-4">
+                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
                 </div>
             </div>
         </div>

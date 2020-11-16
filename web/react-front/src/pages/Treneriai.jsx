@@ -4,57 +4,32 @@ import DisplayAllTrenerisCards from '../components/TrenerioCard'
 import './Treneriai.css'
 
 export default function Treneriai() {
+    var treneriukas1= {
+        vardas: "Akvilė",
+        foto: "https://randomuser.me/api/portraits/women/72.jpg",
+        moto: "“Nėra nieko, kas tave stabdytų, išskyrus tave patį”",
+    }
+
+    var treneriukas2= {
+        vardas: "Dovydas",
+        foto: "https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70",
+        moto: "“Juk taip smagu daryti tai, kas neįmanoma!”",
+    }
+
+    var treneriukas3= {
+        vardas: "Raminta",
+        foto: "https://randomuser.me/api/portraits/women/59.jpg",
+        moto: "“Gyvenime nėra nieko neįmanoma... Vienintelis klausimas tik, ar užteks drąsos siekti tai, ko iš tiesų nori?”",
+    }
+
+
+    var treneriukai = {treneriukas1, treneriukas2, treneriukas3}
     // https://thispersondoesnotexist.com/
     // Nemažink savo tikslų, didink pastangas.
     return (
         <div className="treneriai-div">
             <br></br><br></br>
-            <table class="table table-striped table-dark">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">4</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>   
-                    <tr>
-                    <th scope="row">5</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>                 
-                </tbody>
-            </table>
-
-            <br></br><br></br>
-
-            <table class="table table-striped table-dark">
+            {/* <table class="table table-striped table-dark">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -87,9 +62,10 @@ export default function Treneriai() {
                     <td><button type="button" class="btn btn-secondary">Plačiau</button></td>
                     </tr>                     
                 </tbody>
-            </table>
+            </table> */}
 
-            <DisplayAllTrenerisCards/>
+
+            <DisplayAllTrenerisCards treneriai={treneriukai}/>
 
             <br></br><br></br>
         </div>

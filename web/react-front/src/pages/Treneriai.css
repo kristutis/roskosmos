@@ -1,5 +1,13 @@
 .treneriai-div {
-    width: 70%;
+    margin: auto;
+    width: 100%;
+    /* border-color: red;
+    border-width: 10px;
+    border-style: solid; */
+}
+
+/* .centruoti{
+    position: relative;
     margin-left: auto;
     margin-right: auto;
-}
+} */
