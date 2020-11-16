@@ -5,7 +5,7 @@ import ClientMenu from './menus/ClientMenu'
 import GuestMenu from './menus/GuestMenu'
 
 function NavBar() {
-    const role = "asasdasd"
+    const role = "KLIENTAS"
 
     const menu = () => {
         switch(role) {

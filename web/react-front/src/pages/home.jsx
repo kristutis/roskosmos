@@ -6,6 +6,7 @@ export default function Home() {
     return (
         <div class="home-container">     
             <video width="10" height="10" src={video} autoPlay loop muted />
+            <br></br><br></br>
             <h1>welcome, stranger</h1>            
         </div>
     )
