@@ -5,7 +5,6 @@ import profilePic from '../../images/profile-picture.png'
 function ClientMenu() {
     const vardas="Tautvydas"
 
-
     return (
         <>
         <div className="collapse navbar-collapse">
