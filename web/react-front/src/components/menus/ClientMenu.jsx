@@ -16,7 +16,7 @@ function ClientMenu() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/profile" className="navbar-logo">
+                    <Link to="/sales-rezervacija" className="navbar-logo">
                         <a className="nav-link" >Rezervuoti salės laiką <span className="sr-only">(current)</span></a>
                     </Link>
                 </li>
