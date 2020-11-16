@@ -1,4 +1,6 @@
 import React from 'react'
+import DisplayAllTrenerisCards from '../components/TrenerioCard'
+// import TrenerioCard from '../components/TrenerioCard'
 import './Treneriai.css'
 
 export default function Treneriai() {
@@ -86,6 +88,8 @@ export default function Treneriai() {
                     </tr>                     
                 </tbody>
             </table>
+
+            <DisplayAllTrenerisCards/>
         </div>
     )
 }
