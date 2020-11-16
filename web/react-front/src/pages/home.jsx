@@ -7,7 +7,8 @@ export default function Home() {
         <div class="home-container">     
             <video width="10" height="10" src={video} autoPlay loop muted />
             <br></br><br></br>
-            <h1>welcome, stranger</h1>            
+            <h1>WELCOME, STRANGER</h1>            
+            <p>Get up and start pumping!</p>
         </div>
     )
 }

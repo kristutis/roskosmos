@@ -16,7 +16,16 @@ video {
     z-index: -1;
 }
 
-h1 {
+.home-container > h1 {
+    margin-top: 15px;
     position: center;    
     color: white;
+    font-size: 70px;
+}
+
+.home-container > p {
+    margin-top: 25px;
+    color: white;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

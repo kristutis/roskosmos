@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './TrenerioCard.css'
 
 const profiliofoto = "https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"
@@ -43,7 +44,9 @@ function TrenerioCard(props) {
             <div className="card-body text-dark">
                 <h4 className="card-title">{props.title}</h4>
                 <p className="card-text text-secondary">{props.text}</p>
-                <a href="#" className="btn btn-outline-success">Plačiau</a>
+                <Link to="/treneriai/treneris"> 
+                    <a href="#" className="btn btn-outline-success">Plačiau</a>
+                </Link>
             </div>            
         </div>
     )
