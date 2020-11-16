@@ -31,7 +31,7 @@ function ClientMenu() {
                 </li>
             </ul>
         </div>
-        <div className="collapse navbar-collapse">
+        <div className="navbar-collapse">
             <ul className="navbar-nav ml-auto">                    
                 {/* <li className="nav-item">
                     <a className="nav-link" >Right</a>
@@ -43,7 +43,7 @@ function ClientMenu() {
                     <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {vardas}&nbsp;&nbsp;
                         <img src={profilePic} width="30" height="30" className="mr-2"/>
-                    </a>
+                    </a>                    
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" >Naudotojo profilis</a>
                             <div className="dropdown-divider"></div>

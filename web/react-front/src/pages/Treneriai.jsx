@@ -28,7 +28,7 @@ export default function Treneriai() {
     // Nemažink savo tikslų, didink pastangas.
     return (
         <div className="treneriai-div">
-            <br></br><br></br>
+            <br></br>
             {/* <table class="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -64,7 +64,7 @@ export default function Treneriai() {
                 </tbody>
             </table> */}
 
-
+            <h1>Mūsų komanda</h1><br></br>
             <DisplayAllTrenerisCards treneriai={treneriukai}/>
 
             <br></br><br></br>

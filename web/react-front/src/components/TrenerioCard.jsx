@@ -7,9 +7,6 @@ const vardas = "Dovydas"
 
 export default function DisplayAllTrenerisCards(props) {
     const ts = props.treneriai //array
-    const t1 = ts[0]
-    const t2 = ts[1]
-    const t3 = ts[2]
     return (
         <div className="ts container-fluid d-flex justify content-center">
             <div className="row">
@@ -18,36 +15,19 @@ export default function DisplayAllTrenerisCards(props) {
                         <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
                     </div>
                     )}
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t1.foto} title={t1.vardas} text={t1.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t2.foto} title={t2.vardas} text={t2.moto}/>
-                </div>
-                <div className="col-md-4 my-2">
-                    <TrenerioCard imgsrc={t3.foto} title={t3.vardas} text={t3.moto}/>
-                </div>
+
+                    {/* optional */}
+                    {ts.map(t => 
+                    <div className="col-md-4 my-2">
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
+                    </div>
+                    )}
+                    {ts.map(t => 
+                    <div className="col-md-4 my-2">
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
+                    </div>
+                    )}
+                    {/* optional */}
             </div>
         </div>
     )
