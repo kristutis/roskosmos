@@ -1,0 +1,37 @@
+.card-img-top{
+    transform:scale(1);
+    transition: transform 0.5s ease;
+}
+
+.card-img-top:hover{
+    transform:scale(1.2);
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 3rem 0 !important;
+}
+
+.container-flui .row {
+    padding-top: 6rem;
+}
+
+.card-text {
+    font-size: .9rem;
+    padding: 0.4rem 1.9rem;
+}
+
+/* .card {
+    width: 20rem;
+}
+
+.trenerio-card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253) !important;
+} */
+
+/* body {
+    background-color: radial-gradient(green, green, green);
+} */

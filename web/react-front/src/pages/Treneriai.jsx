@@ -90,6 +90,8 @@ export default function Treneriai() {
             </table>
 
             <DisplayAllTrenerisCards/>
+
+            <br></br><br></br>
         </div>
     )
 }
