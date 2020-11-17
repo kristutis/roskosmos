@@ -4,6 +4,9 @@ import profilePic from '../../images/profile-picture.png'
 import './ClientMenu.css'
 
 function ClientMenu() {
+
+    
+
     const vardas="Tautvydas"
 
     return (
@@ -51,7 +54,7 @@ function ClientMenu() {
                         </Link>
                         <div className="dropdown-divider"></div>
                         <Link to="/">
-                            <a className="dropdown-item dropint" >Atsijungti</a>
+                            <a className="dropdown-item dropint" onClick={clearCookie}>Atsijungti</a>
                         </Link>
                     </div>
                 </li>
@@ -62,3 +65,8 @@ function ClientMenu() {
 }
 
 export default ClientMenu
+
+function clearCookie() {
+    document.cookie = "state="
+    window.location.reload(false);
+}

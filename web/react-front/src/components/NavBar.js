@@ -5,11 +5,20 @@ import ClientMenu from './menus/ClientMenu'
 import GuestMenu from './menus/GuestMenu'
 
 function NavBar() {
+    var state= stringToBoolean((getCookie("state")))
+    console.warn(state)
     const role = "asd"
 
     const menu = () => {
-        switch(role) {
-            case "KLIENTAS":
+        // switch(role) {
+        //     case "KLIENTAS":
+        //         return <ClientMenu/>
+        //     default:
+        //         return <GuestMenu/>
+        // }
+        console.warn(state)
+        switch(state) {
+            case true:
                 return <ClientMenu/>
             default:
                 return <GuestMenu/>
@@ -29,3 +38,28 @@ function NavBar() {
 }
 
 export default NavBar
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+}
+
+function stringToBoolean(string) {
+    switch(string.toLowerCase().trim()){
+        case "true": case "yes": case "1": return true;
+        case "false": case "no": case "0": case null: return false;
+        default: return Boolean(string);
+    }
+}
