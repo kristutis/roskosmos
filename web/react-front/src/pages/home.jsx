@@ -9,6 +9,11 @@ export default function Home() {
             <br></br><br></br>
             <h1>WELCOME, STRANGER</h1>            
             <p>Get up and start pumping!</p>
+            {/* <div className="white-div">Incomming things</div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br> */}
         </div>
     )
 }
