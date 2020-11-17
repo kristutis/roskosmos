@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom'
 function GuestMenu() {
     return (
         <div className="collapse navbar-collapse">
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <Link to="/treneriai" className="navbar-logo">
+                        <a className="nav-link" >Treneriai <span className="sr-only">(current)</span></a>
+                    </Link>
+                </li>
+            </ul>
             <ul className="navbar-nav ml-auto">                    
                 <li className="nav-item mr-2">
                     <Link to="/profile" className="navbar-logo">

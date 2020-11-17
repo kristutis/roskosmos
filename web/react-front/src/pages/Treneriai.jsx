@@ -4,6 +4,11 @@ import DisplayAllTrenerisCards from '../components/TrenerioCard'
 import './Treneriai.css'
 
 export default function Treneriai() {
+    
+    // fetch('http://localhost:8000/api/users/1')
+    // .then(data => data.json())
+    // .then(data => console.log(data))     
+
     var treneriukas1= {
         vardas: "Akvilė",
         foto: "https://randomuser.me/api/portraits/women/72.jpg",

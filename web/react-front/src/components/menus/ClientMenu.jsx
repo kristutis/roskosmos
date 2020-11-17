@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import profilePic from '../../images/profile-picture.png'
+import './ClientMenu.css'
 
 function ClientMenu() {
     const vardas="Tautvydas"
@@ -40,14 +41,18 @@ function ClientMenu() {
                     <a className="nav-link" >Left</a>
                 </li> */}
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="nav-link dropdown-toggle dropint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {vardas}&nbsp;&nbsp;
                         <img src={profilePic} width="30" height="30" className="mr-2"/>
                     </a>                    
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" >Naudotojo profilis</a>
-                            <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" >Atsijungti</a>
+                        <Link to="/profile">
+                            <a className="dropdown-item dropint" >Naudotojo profilis</a>
+                        </Link>
+                        <div className="dropdown-divider"></div>
+                        <Link to="/">
+                            <a className="dropdown-item dropint" >Atsijungti</a>
+                        </Link>
                     </div>
                 </li>
             </ul>
