@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import profilePic from '../../images/profile-picture.png'
 import './ClientMenu.css'
 
-function ClientMenu() {
-
-    
+function ClientMenu() {    
 
     const vardas="Tautvydas"
 

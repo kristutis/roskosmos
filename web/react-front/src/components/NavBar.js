@@ -7,24 +7,21 @@ import GuestMenu from './menus/GuestMenu'
 function NavBar() {
     var state= stringToBoolean((getCookie("state")))
     console.warn(state)
-    const role = "asd"
+    let role = "KLIENTAS"
+    if (state) {
+        role = "KLIENTAS"
+    } else {
+        role = "asd"
+    }
 
     const menu = () => {
-        // switch(role) {
-        //     case "KLIENTAS":
-        //         return <ClientMenu/>
-        //     default:
-        //         return <GuestMenu/>
-        // }
-        console.warn(state)
-        switch(state) {
-            case true:
+        switch(role) {
+            case "KLIENTAS":
                 return <ClientMenu/>
             default:
                 return <GuestMenu/>
         }
-    }
-    
+    }    
 
     return (
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">            
