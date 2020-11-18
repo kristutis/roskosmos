@@ -2,7 +2,7 @@ import { get } from 'jquery';
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function GuestMenu() {
+function GuestMenu(props) {
     document.cookie = "state=false";
     // console.warn(stringToBoolean((getCookie("state"))))
     // console.warn(x)    
@@ -29,7 +29,7 @@ function GuestMenu() {
             <ul className="navbar-nav ml-auto">                    
                 <li className="nav-item mr-2">
                     <Link to="/" className="navbar-logo">
-                        <button type="submit" className="btn btn-secondary" onClick={setState}>Prisijungti</button>
+                        <button type="submit" className="btn btn-secondary" onClick={setState} onClick={() => props.loginModal(true)} >Prisijungti</button>
                     </Link>  
                 </li>
                 <li class="nav-item dropdown">

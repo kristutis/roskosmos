@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.jpg'
 import ClientMenu from './menus/ClientMenu'
 import GuestMenu from './menus/GuestMenu'
+import Modal from 'react-modal';
 
 function NavBar() {
+    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
+
     var state= stringToBoolean((getCookie("state")))
     console.warn(state)
     let role = "KLIENTAS"
@@ -19,7 +22,7 @@ function NavBar() {
             case "KLIENTAS":
                 return <ClientMenu/>
             default:
-                return <GuestMenu/>
+                return <GuestMenu loginModal={setLoginModalIsOpen}/>
         }
     }    
 
@@ -29,7 +32,13 @@ function NavBar() {
             <img class="rounded-circle mr-2" src={logo} width="40" height="40"/>
             <a class="navbar-brand">ROSKOSMOS</a>
         </Link> 
+        
         {menu()}
+        <Modal isOpen={loginModalIsOpen} >
+            <h1>hello</h1>
+            <p>ppl</p>
+            <button onClick={() => setLoginModalIsOpen(false)}></button>
+        </Modal >
     </nav>
     )     
 }

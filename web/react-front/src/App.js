@@ -12,19 +12,19 @@ import SalesRezervacija from './pages/SalesRezervacija';
 import Treneris from './pages/Treneris';
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-        <NavBar /> 
-          <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/treneriai" exact component={Treneriai} />
-            <Route path="/treneriai/treneris" exact component={Treneris} />
-            <Route path="/sales-rezervacija" exact component={SalesRezervacija} />            
-          </Switch>
-      </Router>       
-    </div>
+  return (    
+    <div className="App">              
+        <Router>        
+          <NavBar />           
+            <Switch>
+              <Route path="/" exact component={Home}/>
+              <Route path="/profile" exact component={Profile} />
+              <Route path="/treneriai" exact component={Treneriai} />
+              <Route path="/treneriai/treneris" exact component={Treneris} />
+              <Route path="/sales-rezervacija" exact component={SalesRezervacija} />            
+            </Switch>            
+        </Router>               
+      </div>
   );
 }
 
