@@ -1,0 +1,11 @@
+.close-x {
+    transform: rotate(45deg);
+    font-size: 2em;
+    position: absolute;
+    top: 0px;
+    right:0.4em;
+}
+
+.close-x:hover {
+    cursor: pointer;
+}
