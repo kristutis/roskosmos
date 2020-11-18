@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import profilePic from '../../images/profile-picture.png'
 import './ClientMenu.css'
-import Modal from 'react-modal';
 
 function ClientMenu() {    
 
@@ -10,10 +9,7 @@ function ClientMenu() {
 
     return (
         <>
-        <Modal isOpen={true}  >
-            <h1>hello</h1>
-            <p>ppl</p>
-        </Modal >
+        
         <div className="collapse navbar-collapse">
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">

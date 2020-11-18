@@ -1,28 +1,21 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.jpg'
+import LoginModal from './LoginModal'
 import ClientMenu from './menus/ClientMenu'
 import GuestMenu from './menus/GuestMenu'
-import Modal from 'react-modal';
 
-function NavBar() {
-    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
+function NavBar() {   
+    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)      
 
-    var state= stringToBoolean((getCookie("state")))
-    console.warn(state)
-    let role = "KLIENTAS"
-    if (state) {
-        role = "KLIENTAS"
-    } else {
-        role = "asd"
-    }
+    let role = "asd"    
 
     const menu = () => {
         switch(role) {
             case "KLIENTAS":
                 return <ClientMenu/>
             default:
-                return <GuestMenu loginModal={setLoginModalIsOpen}/>
+                return <GuestMenu onModalClick={setLoginModalIsOpen}/>
         }
     }    
 
@@ -34,11 +27,7 @@ function NavBar() {
         </Link> 
         
         {menu()}
-        <Modal isOpen={loginModalIsOpen} >
-            <h1>hello</h1>
-            <p>ppl</p>
-            <button onClick={() => setLoginModalIsOpen(false)}></button>
-        </Modal >
+        <LoginModal isOpen={loginModalIsOpen} toClose={setLoginModalIsOpen}/>
     </nav>
     )     
 }

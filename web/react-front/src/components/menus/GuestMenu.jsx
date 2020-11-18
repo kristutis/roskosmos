@@ -4,18 +4,6 @@ import { Link } from 'react-router-dom'
 
 function GuestMenu(props) {
     document.cookie = "state=false";
-    // console.warn(stringToBoolean((getCookie("state"))))
-    // console.warn(x)    
-    function setState() {
-        var state= stringToBoolean((getCookie("state")))
-        // console.warn(state)
-        state=!state
-        // console.warn(state)
-        // console.warn("state="+state)
-        document.cookie = "state="+state
-        // console.warn(stringToBoolean((getCookie("state"))))
-        window.location.reload(false);
-    }
 
     return (
         <div className="collapse navbar-collapse">
@@ -28,14 +16,10 @@ function GuestMenu(props) {
             </ul>
             <ul className="navbar-nav ml-auto">                    
                 <li className="nav-item mr-2">
-                    <Link to="/" className="navbar-logo">
-                        <button type="submit" className="btn btn-secondary" onClick={setState} onClick={() => props.loginModal(true)} >Prisijungti</button>
-                    </Link>  
+                        <button type="submit" className="btn btn-secondary" onClick={() => props.onModalClick(true)} >Prisijungti</button>
                 </li>
                 <li class="nav-item dropdown">
-                    <Link to="/" className="navbar-logo">
                         <button type="submit" className="btn btn-secondary">Registruotis</button>
-                    </Link> 
                 </li>
             </ul>
         </div>
