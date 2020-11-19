@@ -6,7 +6,6 @@ export default function LoginModal(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    let userId=''
     function login() {
         fetch("http://localhost:8000/api/users",
             {
@@ -20,10 +19,8 @@ export default function LoginModal(props) {
             var found=false
             for (let user of a) {                
                 if (user.email===email && user.slaptazodis===password) {
-                    // console.log(a)
-                    userId=user.id
-                    console.log(userId)    
-                    document.cookie = "uid="+userId;   
+                    console.log(user.id)    
+                    document.cookie = "uid="+user.id;   
                     found=true        
                     window.location.reload(false);                         
                 }              
