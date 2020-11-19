@@ -28,7 +28,6 @@ export default function SignupModal(props) {
             email: email,
             slaptazodis: password,
         }
-        console.log(JSON.stringify(user))
         fetch("http://localhost:8000/api/users",
             {
                 method: 'POST',
@@ -39,7 +38,8 @@ export default function SignupModal(props) {
             }
         ).then(res => res.json()).then(a => {              
                 if (a===true) {
-                    alert('success')                
+                    alert('success')      
+                    props.toClose(false)          
                 } else {
                     alert('cannot register')
                 }             
