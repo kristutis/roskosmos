@@ -1,12 +1,14 @@
 package main
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"time"
 )
 
 type User struct {
-	Id           int       `json:"id"`
+	Id           string    `json:"id"`
 	Vardas       string    `json:"vardas"`
 	Pavarde      string    `json:"pavarde"`
 	Email        string    `json:"email"`
@@ -45,14 +47,17 @@ func insertUserToDb(user User) bool {
 	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" {
 		return false
 	}
+	hasher := sha1.New()
+	hasher.Write([]byte(user.Email + user.Slaptazodis))
+	id := hex.EncodeToString(hasher.Sum(nil))
 
 	db := getDb()
-	q, err := db.Prepare("INSERT INTO vartotojas (vardas, pavarde, email, slaptazodis) VALUES (?,?,?,?)")
+	q, err := db.Prepare("INSERT INTO vartotojas (id, vardas, pavarde, email, slaptazodis) VALUES (?,?,?,?,?)")
 	if err != nil {
 		fmt.Println(err)
 		return false
 	} else {
-		q.Exec(user.Vardas, user.Pavarde, user.Email, user.Slaptazodis)
+		q.Exec(id, user.Vardas, user.Pavarde, user.Email, user.Slaptazodis)
 	}
 	return true
 }

@@ -16,7 +16,7 @@ function GuestMenu(props) {
                 <li className="nav-item mr-2">
                         <button type="submit" className="btn btn-secondary" onClick={() => props.onModalClick(true)} >Prisijungti</button>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                         <button type="submit" className="btn btn-secondary">Registruotis</button>
                 </li>
             </ul>

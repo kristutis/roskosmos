@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/handlers"
@@ -36,7 +35,7 @@ func getUserById(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	users := getUsersFromDb()
 	for _, user := range users {
-		if strconv.Itoa(user.Id) == param["id"] {
+		if user.Id == param["id"] {
 			json.NewEncoder(w).Encode(user)
 			return
 		}
@@ -68,7 +67,7 @@ func updateUserById(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	if strconv.Itoa(user.Id) != param["id"] {
+	if user.Id != param["id"] {
 		json.NewEncoder(w).Encode(false)
 		fmt.Println("ids do not match")
 		return
