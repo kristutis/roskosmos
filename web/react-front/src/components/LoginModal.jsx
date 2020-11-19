@@ -43,7 +43,6 @@ export default function LoginModal(props) {
             style={
                 {
                     content: {
-                        // overflow: 'hidden',
                         top: '30%',
                         left: '50%',
                         right: 'auto',
@@ -65,14 +64,14 @@ export default function LoginModal(props) {
                 <form>
                     <p id="emailHelp" className="text-danger" id="alert-message"></p>
                     <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input required type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
+                        <label for="exampleInputEmail1">El. pašto adresas</label>
+                        <input required type="email" className="form-control" aria-describedby="emailHelp" placeholder="Įrašykite prisijungimo duomenis" onChange={e => setEmail(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input required type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <input required type="password" className="form-control" placeholder="Įrašykite prisijungimo duomenis" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <input className="btn btn-primary btn-block btn-lg" value="Login" onClick={() => login()}/>
+                    <input className="btn btn-primary btn-block btn-lg" value="Prisijungti" onClick={() => login()}/>
                 </form>
         </Modal >
     )

@@ -4,9 +4,11 @@ import logo from '../images/logo.jpg'
 import LoginModal from './LoginModal'
 import ClientMenu from './menus/ClientMenu'
 import GuestMenu from './menus/GuestMenu'
+import SignupModal from './SignupModal'
 
 function NavBar() {   
-    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)      
+    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)    
+    const [signupModalIsOpen, setSignupModalIsOpen] = useState(false)  
     const [role, setRole] = useState('GUEST')
     // setRole('KLIENTAS')
 
@@ -31,7 +33,7 @@ function NavBar() {
             case 'KLIENTAS':
                 return <ClientMenu/>
             default:
-                return <GuestMenu onModalClick={setLoginModalIsOpen}/>
+                return <GuestMenu onModalClick={setLoginModalIsOpen} onSignUpClick={setSignupModalIsOpen}/>
         }
     }    
 
@@ -44,6 +46,7 @@ function NavBar() {
         
         {menu()}
         <LoginModal isOpen={loginModalIsOpen} toClose={setLoginModalIsOpen}/>
+        <SignupModal isOpen={signupModalIsOpen} toClose={setSignupModalIsOpen}/>
     </nav>
     )     
 }
@@ -65,11 +68,3 @@ function getCookie(cname) {
     }
     return "";
 }
-
-// function stringToBoolean(string) {
-//     switch(string.toLowerCase().trim()){
-//         case "true": case "yes": case "1": return true;
-//         case "false": case "no": case "0": case null: return false;
-//         default: return Boolean(string);
-//     }
-// }
