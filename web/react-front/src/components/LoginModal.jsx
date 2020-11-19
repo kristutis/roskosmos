@@ -8,9 +8,6 @@ export default function LoginModal(props) {
 
     let userId=''
     function login() {
-        console.log(email)
-        console.log(password)
-
         fetch("http://localhost:8000/api/users",
             {
                 method: 'GET',
@@ -20,15 +17,22 @@ export default function LoginModal(props) {
                 },                
             }
         ).then(res => res.json()).then(a => {
-            for (let user of a) {
-                if (user.email===email) {
+            var found=false
+            for (let user of a) {                
+                if (user.email===email && user.slaptazodis===password) {
+                    // console.log(a)
                     userId=user.id
-                    console.log(userId)
-                    
-                }
-                
+                    console.log(userId)    
+                    document.cookie = "uid="+userId;   
+                    found=true        
+                    window.location.reload(false);                         
+                }              
+            }
+            if (!found) {
+                document.getElementById("alert-message").innerHTML = "Neteisingas el. paštas arba slaptažodis!";
             }
         });
+        
     }
 
     
@@ -59,16 +63,16 @@ export default function LoginModal(props) {
                 <br></br>
                 <br></br>
                 <form>
-                    <div class="form-group">
+                    <p id="emailHelp" className="text-danger" id="alert-message"></p>
+                    <div className="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
-                        <small id="emailHelp" class="form-text text-muted">*We'll never share your email with anyone else.</small>
+                        <input required type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <input required type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login" onClick={() => login()}/>
+                    <input className="btn btn-primary btn-block btn-lg" value="Login" onClick={() => login()}/>
                 </form>
         </Modal >
     )

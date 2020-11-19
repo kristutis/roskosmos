@@ -7,12 +7,28 @@ import GuestMenu from './menus/GuestMenu'
 
 function NavBar() {   
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)      
+    const [role, setRole] = useState('GUEST')
+    // setRole('KLIENTAS')
 
-    let role = "asd"    
+    var uid = getCookie('uid')
+    if (uid!='') { 
+        fetch("http://localhost:8000/api/users/"+uid,
+                {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },                
+                }
+        ).then(res => res.json()).then(a => {
+            console.log(a)
+            // setRole(a)
+        });           
+    }
 
     const menu = () => {
         switch(role) {
-            case "KLIENTAS":
+            case 'KLIENTAS':
                 return <ClientMenu/>
             default:
                 return <GuestMenu onModalClick={setLoginModalIsOpen}/>
@@ -20,10 +36,10 @@ function NavBar() {
     }    
 
     return (
-    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">            
+    <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-dark">            
         <Link to="/" className="navbar-logo"> 
-            <img class="rounded-circle mr-2" src={logo} width="40" height="40"/>
-            <a class="navbar-brand">ROSKOSMOS</a>
+            <img className="rounded-circle mr-2" src={logo} width="40" height="40"/>
+            <a className="navbar-brand">ROSKOSMOS</a>
         </Link> 
         
         {menu()}
@@ -33,7 +49,6 @@ function NavBar() {
 }
 
 export default NavBar
-
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -51,10 +66,10 @@ function getCookie(cname) {
     return "";
 }
 
-function stringToBoolean(string) {
-    switch(string.toLowerCase().trim()){
-        case "true": case "yes": case "1": return true;
-        case "false": case "no": case "0": case null: return false;
-        default: return Boolean(string);
-    }
-}
+// function stringToBoolean(string) {
+//     switch(string.toLowerCase().trim()){
+//         case "true": case "yes": case "1": return true;
+//         case "false": case "no": case "0": case null: return false;
+//         default: return Boolean(string);
+//     }
+// }
