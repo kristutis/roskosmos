@@ -10,25 +10,24 @@ function NavBar() {
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)    
     const [signupModalIsOpen, setSignupModalIsOpen] = useState(false)  
     const [role, setRole] = useState('GUEST')
-    // setRole('KLIENTAS')
-
-    var uid = getCookie('uid')
-    if (uid!='') { 
-        fetch("http://localhost:8000/api/users/"+uid,
-                {
-                    method: 'GET',
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },                
-                }
-        ).then(res => res.json()).then(a => {
-            console.log(a)
-            // setRole(a)
-        });           
-    }
+    // setRole('KLIENTAS')    
 
     const menu = () => {
+        var uid = getCookie('uid')
+        if (uid!='') {             
+            fetch("http://localhost:8000/api/users/"+uid,
+                    {
+                        method: 'GET',
+                        cache: 'no-cache',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },                
+                    }
+            ).then(res => res.json()).then(a => {
+                console.log(a.role)
+            });           
+        }
+
         switch(role) {
             case 'KLIENTAS':
                 return <ClientMenu/>
