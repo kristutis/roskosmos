@@ -67,6 +67,6 @@ function ClientMenu() {
 export default ClientMenu
 
 function clearCookie() {
-    document.cookie = "state="
+    document.cookie = "uid="
     window.location.reload(false);
 }

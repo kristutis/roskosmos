@@ -24,7 +24,7 @@ function NavBar() {
                         },                
                     }
             ).then(res => res.json()).then(a => {
-                console.log(a.role)
+                setRole(a.role)
             });           
         }
 
