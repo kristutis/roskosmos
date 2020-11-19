@@ -1,5 +1,5 @@
 //xampp, go
-//go run .\database.go .\main.go .\user.go .\client.go
+//go run .\database.go .\main.go .\user.go
 package main
 
 import (
@@ -10,20 +10,24 @@ import (
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	r := mux.NewRouter()
+	headers := handlers.AllowedHeaders([]string{"Content-Type"})
+	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
+	origins := handlers.AllowedOrigins([]string{"*"})
 
 	//users
-	r.HandleFunc("/api/users", getUsers).Methods("GET")
+	r.HandleFunc("/api/users", getUsers).Methods("GET", "OPTIONS")
 	r.HandleFunc("/api/users/{id}", getUserById).Methods("GET")
 	r.HandleFunc("/api/users", postUser).Methods("POST")
 	r.HandleFunc("/api/users/{id}", updateUserById).Methods("PUT")
 	// r.HandleFunc("/api/users/{id}", deleteUserById).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
 }
 
 //GET http://localhost:8000/api/users/1
@@ -42,6 +46,7 @@ func getUserById(w http.ResponseWriter, r *http.Request) {
 
 //GET http://localhost:8000/api/users
 func getUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	users := getUsersFromDb()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)

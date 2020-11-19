@@ -2,7 +2,37 @@ import React, {useState} from 'react'
 import Modal from 'react-modal';
 import './LoginModal.css'
 
-export default function LoginModal(props) {
+export default function LoginModal(props) {    
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    let userId=''
+    function login() {
+        console.log(email)
+        console.log(password)
+
+        fetch("http://localhost:8000/api/users",
+            {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+            }
+        ).then(res => res.json()).then(a => {
+            for (let user of a) {
+                if (user.email===email) {
+                    userId=user.id
+                    console.log(userId)
+                    
+                }
+                
+            }
+        });
+    }
+
+    
+
     return (        
         <Modal set="50"  aria-labelledby="contained-modal-title-vcenter"
         centered isOpen={props.isOpen} onRequestClose={() => props.toClose(false)}
@@ -31,15 +61,16 @@ export default function LoginModal(props) {
                 <form>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                        <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
                         <small id="emailHelp" class="form-text text-muted">*We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login"/>
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login" onClick={() => login()}/>
                 </form>
         </Modal >
     )
 }
+
