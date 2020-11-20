@@ -1,0 +1,1 @@
+go run ./database.go ./main.go ./user.go

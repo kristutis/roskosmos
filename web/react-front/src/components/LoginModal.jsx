@@ -46,7 +46,7 @@ export default function LoginModal(props) {
                         bottom: 'auto',
                         marginRight: '-50%',
                         width: '30%',
-                        height: '40%',
+                        height: 'wrap',
                         transform: 'translate(-40%, -10%)',
                         background: 'rgba(255,255,255, 0.7)',      
                       },
@@ -68,7 +68,8 @@ export default function LoginModal(props) {
                         <label for="exampleInputPassword1">Password</label>
                         <input required type="password" className="form-control" placeholder="Įrašykite prisijungimo duomenis" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <input className="btn btn-primary btn-block btn-lg" value="Prisijungti" onClick={() => login()}/>
+                    <button type="button" class="btn btn-primary reg-button" value="Prisijungti" onClick={() => login()} >Prisijungti</button>
+                    {/* <input className="btn btn-primary btn-block btn-lg" value="Prisijungti" onClick={() => login()}/> */}
                 </form>
         </Modal >
     )

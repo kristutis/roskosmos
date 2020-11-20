@@ -14,10 +14,10 @@ function GuestMenu(props) {
             </ul>
             <ul className="navbar-nav ml-auto">                    
                 <li className="nav-item mr-2">
-                        <button type="submit" className="btn btn-secondary" onClick={() => props.onModalClick(true)} >Prisijungti</button>
+                        <button type="submit" className="btn btn-secondary" onClick={() => {props.onModalClick(true); props.onSignUpClick(false)}} >Prisijungti</button>
                 </li>
                 <li className="nav-item dropdown">
-                        <button type="submit" className="btn btn-secondary" onClick={() => props.onSignUpClick(true)}>Registruotis</button>
+                        <button type="submit" className="btn btn-secondary" onClick={() => {props.onSignUpClick(true); props.onModalClick(false)}}>Registruotis</button>
                 </li>
             </ul>
         </div>

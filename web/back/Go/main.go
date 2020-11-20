@@ -1,3 +1,4 @@
+//open ports, fetch linkai 78:8080
 //xampp, go
 //go run .\database.go .\main.go .\user.go
 package main

@@ -42,4 +42,7 @@ body {
   height: 100%;
   background-color: #000000;
   background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);  
+  background-repeat: no-repeat;
+  height: 100%;
+  background-attachment: fixed;
 }

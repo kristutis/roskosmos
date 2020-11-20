@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Modal from 'react-modal';
+import './LoginModal.css'
 
 export default function SignupModal(props) {
     const [vardas, setVardas] = useState('')
@@ -9,6 +10,7 @@ export default function SignupModal(props) {
     const [repeatPass, setRepeatPass] = useState('')
 
     function register() {
+        console.log(password)
         if (repeatPass!=password) {
             alert("slaptažodžiai nesutampa!")
             return
@@ -28,6 +30,7 @@ export default function SignupModal(props) {
             email: email,
             slaptazodis: password,
         }
+
         fetch("http://localhost:8000/api/users",
             {
                 method: 'POST',
@@ -61,7 +64,7 @@ export default function SignupModal(props) {
                             bottom: 'auto',
                             marginRight: '-50%',
                             width: '30%',
-                            height: '60%',
+                            height: 'wrap',
                             transform: 'translate(-40%, -10%)',
                             background: 'rgba(255,255,255, 0.7)',      
                         },
@@ -94,7 +97,7 @@ export default function SignupModal(props) {
                         <label for="pass">Pakartokite slaptažodį</label>
                         <input required type="password" className="form-control" onChange={e => setRepeatPass(e.target.value)}/>
                     </div>
-                    <input className="btn btn-primary btn-block btn-lg" value="Registruotis" onClick={() => register()} />
+                    <button type="button" class="btn btn-primary reg-button" value="Registruotis" onClick={() => register()} >Registruotis</button>
                 </form>
         </Modal >
         </div>
