@@ -38,6 +38,7 @@ func main() {
 
 //GET http://localhost:8000/api/trainers
 func getTrainers(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning trainers")
 	w.Header().Set("Content-Type", "application/json")
 	trainers, err := getTrainersFromDb()
 	// fmt.Println("hello", trainers)
@@ -50,6 +51,7 @@ func getTrainers(w http.ResponseWriter, r *http.Request) {
 
 //GET http://localhost:8000/api/users/1
 func getUserById(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning user")
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
 	users := getUsersFromDb()
@@ -64,6 +66,7 @@ func getUserById(w http.ResponseWriter, r *http.Request) {
 
 //GET http://localhost:8000/api/users
 func getUsers(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning users")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	users := getUsersFromDb()
 	w.Header().Set("Content-Type", "application/json")
@@ -72,6 +75,7 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 
 //POST http://localhost:8000/api/users
 func postUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("posting user")
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)
@@ -81,8 +85,8 @@ func postUser(w http.ResponseWriter, r *http.Request) {
 
 //PUT http://localhost:8000/api/users/1
 func updateUserById(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("updating user")
 	w.Header().Set("Content-Type", "application/json")
-
 	param := mux.Vars(r)
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)

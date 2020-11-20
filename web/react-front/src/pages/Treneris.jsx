@@ -11,7 +11,7 @@ export default function Treneris() {
             <div className="ts container-fluid d-flex justify content-center">
                 <div className="row">
                     <div className="col-md-6">                        
-                        <img width="100%" height="700" src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"/>
+                        <img width="100%" height="700" alt=""  src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"/>
                     </div>
                     <div className="col-md-6">        
                         <TrainerComments/>

@@ -18,21 +18,21 @@ export default function TrainerComments() {
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/women/72.jpg" width="70" height="70"/></td>
+                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/women/72.jpg" alt="" width="70" height="70"/></td>
                         <td>Akvilė</td>
                         <td>“Nėra nieko, kas tave stabdytų, išskyrus tave patį”</td>
                         <td>2020-20-20</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/men/61.jpg" width="70" height="70"/></td>
+                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/men/61.jpg" alt="" width="70" height="70"/></td>
                         <td>Dovydas</td>
                         <td>“Juk taip smagu daryti tai, kas neįmanoma!”</td>
                         <td>2020-20-20</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/women/59.jpg" width="70" height="70"/></td>
+                        <td><img className="rounded-circle img-thumbnail" src="https://randomuser.me/api/portraits/women/59.jpg" alt="" width="70" height="70"/></td>
                         <td>Raminta</td>
                         <td>“Gyvenime nėra nieko neįmanoma... Vienintelis klausimas tik, ar užteks drąsos siekti tai, ko iš tiesų nori?”</td>
                         <td>2020-20-20</td>

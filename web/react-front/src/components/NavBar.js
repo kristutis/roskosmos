@@ -14,7 +14,7 @@ function NavBar() {
 
     const menu = () => {
         var uid = getCookie('uid')
-        if (uid!='') {             
+        if (uid!=='') {             
             fetch(window.backend+"/users/"+uid,
                     {
                         method: 'GET',
@@ -39,7 +39,7 @@ function NavBar() {
     return (
     <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-dark">            
         <Link to="/" className="navbar-logo"> 
-            <img className="rounded-circle mr-2" src={logo} width="40" height="40"/>
+            <img className="rounded-circle mr-2" src={logo} alt="" width="40" height="40"/>
             <span className="navbar-brand">ROSKOSMOS</span>
         </Link> 
         
@@ -58,10 +58,10 @@ function getCookie(cname) {
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
       var c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) === ' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length, c.length);
       }
     }
