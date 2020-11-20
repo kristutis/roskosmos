@@ -41,7 +41,6 @@ func getTrainers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("returning trainers")
 	w.Header().Set("Content-Type", "application/json")
 	trainers, err := getTrainersFromDb()
-	// fmt.Println("hello", trainers)
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
 		return
