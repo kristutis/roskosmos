@@ -4,6 +4,31 @@ import DisplayAllTrenerisCards from '../components/TrenerioCard'
 import './Treneriai.css'
 
 export default function Treneriai() {
+
+    // function login() {
+    //     fetch(window.backend+"/users",
+    //         {
+    //             method: 'GET',
+    //             cache: 'no-cache',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },                
+    //         }
+    //     ).then(res => res.json()).then(a => {
+    //         var found=false
+    //         for (let user of a) {                
+    //             if (user.email===email && user.slaptazodis===password) {
+    //                 console.log(user.id)    
+    //                 document.cookie = "uid="+user.id;   
+    //                 found=true        
+    //                 window.location.reload(false);                         
+    //             }              
+    //         }
+    //         if (!found) {
+    //             document.getElementById("alert-message").innerHTML = "Neteisingas el. paštas arba slaptažodis!";
+    //         }
+    //     });        
+    // }
     
     // fetch('http://localhost:8000/api/users/1')
     // .then(data => data.json())

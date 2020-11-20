@@ -30,7 +30,15 @@ func main() {
 	r.HandleFunc("/api/users/{id}", updateUserById).Methods("PUT")
 	// r.HandleFunc("/api/users/{id}", deleteUserById).Methods("GET")
 
+	//trainers
+	r.HandleFunc("/api/trainers/display", getDisplayTrainers).Methods("GET")
+
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
+}
+
+//GET http://localhost:8000/api/trainers/display
+func getDisplayTrainers(w http.ResponseWriter, r *http.Request) {
+
 }
 
 //GET http://localhost:8000/api/users/1
