@@ -35,7 +35,7 @@ export default function DisplayAllTrenerisCards() {
                     {/* optional */}
                     {treneriai.map((t, index)  => 
                     <div className="col-md-4 my-2" key={index}>
-                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={"“"+t.moto+"”"}/>
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={"“"+t.moto+"”"} routinti={"/treneriai/treneris/"+index}/>
                     </div>
                     )}
                
@@ -45,6 +45,7 @@ export default function DisplayAllTrenerisCards() {
 }
 
 function TrenerioCard(props) {
+    console.log(props.routinti)
     return (
         <div className="card text-center shadow my-2">
             <div className="trenerio-card"></div>
@@ -54,7 +55,7 @@ function TrenerioCard(props) {
             <div className="card-body text-dark">
                 <h4 className="card-title">{props.title}</h4>
                 <p className="card-text text-secondary">{props.text}</p>
-                <Link to="/treneriai/treneris"> 
+                <Link to={props.routinti}> 
                     <span className="btn btn-outline-success">Plačiau</span>
                 </Link>
             </div>            
