@@ -31,14 +31,21 @@ func main() {
 	// r.HandleFunc("/api/users/{id}", deleteUserById).Methods("GET")
 
 	//trainers
-	r.HandleFunc("/api/trainers/display", getDisplayTrainers).Methods("GET")
+	r.HandleFunc("/api/trainers", getTrainers).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
 }
 
-//GET http://localhost:8000/api/trainers/display
-func getDisplayTrainers(w http.ResponseWriter, r *http.Request) {
-
+//GET http://localhost:8000/api/trainers
+func getTrainers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	trainers, err := getTrainersFromDb()
+	// fmt.Println("hello", trainers)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(trainers)
 }
 
 //GET http://localhost:8000/api/users/1

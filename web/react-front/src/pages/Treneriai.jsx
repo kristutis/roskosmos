@@ -4,35 +4,25 @@ import DisplayAllTrenerisCards from '../components/TrenerioCard'
 import './Treneriai.css'
 
 export default function Treneriai() {
-
-    // function login() {
-    //     fetch(window.backend+"/users",
-    //         {
-    //             method: 'GET',
-    //             cache: 'no-cache',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },                
-    //         }
-    //     ).then(res => res.json()).then(a => {
-    //         var found=false
-    //         for (let user of a) {                
-    //             if (user.email===email && user.slaptazodis===password) {
-    //                 console.log(user.id)    
-    //                 document.cookie = "uid="+user.id;   
-    //                 found=true        
-    //                 window.location.reload(false);                         
-    //             }              
-    //         }
-    //         if (!found) {
-    //             document.getElementById("alert-message").innerHTML = "Neteisingas el. paštas arba slaptažodis!";
-    //         }
-    //     });        
-    // }
+    // var treneriukai = []
     
-    // fetch('http://localhost:8000/api/users/1')
-    // .then(data => data.json())
-    // .then(data => console.log(data))     
+    fetch(window.backend+"/trainers",
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },                
+        }
+    ).then(res => res.json()).then(a => {        
+        for (let trainer of a) {           
+            var treneriukas = {
+                vardas: trainer.user.vardas,
+                foto: trainer.user.profilio_foto,
+                moto: trainer.moto,               
+            }
+            treneriukai.push(treneriukas)     
+        }
+    });            
 
     var treneriukas1= {
         vardas: "Akvilė",
@@ -53,7 +43,8 @@ export default function Treneriai() {
     }
 
 
-    var treneriukai = [treneriukas1, treneriukas2, treneriukas3]
+    var treneriukai = ([treneriukas1, treneriukas2, treneriukas3])
+    console.log(treneriukai)
     // https://thispersondoesnotexist.com/
     // Nemažink savo tikslų, didink pastangas.
     return (
