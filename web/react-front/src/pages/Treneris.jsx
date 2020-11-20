@@ -4,7 +4,10 @@ import './Treneris.css'
 
 
 
-export default function Treneris() {
+export default function Treneris(props) {
+    const trenerioDd = props.match.params.id
+    console.log(trenerioDd)
+
     return (
         <div className="first-div">
             <br></br><h1>Rimulis</h1><br></br>

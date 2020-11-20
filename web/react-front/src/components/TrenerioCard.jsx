@@ -19,7 +19,8 @@ export default function DisplayAllTrenerisCards() {
                 var treneriukas = {
                     vardas: trainer.user.vardas,
                     foto: trainer.user.profilio_foto,
-                    moto: trainer.moto,               
+                    moto: trainer.moto,    
+                    id: trainer.user.id,           
                 }
                 trs.push(treneriukas)     
             }
@@ -35,7 +36,7 @@ export default function DisplayAllTrenerisCards() {
                     {/* optional */}
                     {treneriai.map((t, index)  => 
                     <div className="col-md-4 my-2" key={index}>
-                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={"“"+t.moto+"”"} routinti={"/treneriai/treneris/"+index}/>
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={"“"+t.moto+"”"} routinti={"/treneriai/"+t.id}/>
                     </div>
                     )}
                
@@ -45,7 +46,6 @@ export default function DisplayAllTrenerisCards() {
 }
 
 function TrenerioCard(props) {
-    console.log(props.routinti)
     return (
         <div className="card text-center shadow my-2">
             <div className="trenerio-card"></div>
