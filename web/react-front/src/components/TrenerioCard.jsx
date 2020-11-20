@@ -35,7 +35,7 @@ export default function DisplayAllTrenerisCards() {
                     {/* optional */}
                     {treneriai.map((t, index)  => 
                     <div className="col-md-4 my-2" key={index}>
-                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
+                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={"“"+t.moto+"”"}/>
                     </div>
                     )}
                
