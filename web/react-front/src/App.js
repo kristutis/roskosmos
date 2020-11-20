@@ -12,14 +12,15 @@ import SalesRezervacija from './pages/SalesRezervacija';
 import Treneris from './pages/Treneris';
 
 function App() {
-  // window.backend="http://localhost:8000/api"
-  window.backend="http://78.60.101.121:8000/api"
+  window.backend="http://localhost:8000/api"
+  // window.backend="http://78.60.101.121:8000/api"
 
   return (    
     <div className="App">              
         <Router>        
           <NavBar />           
             <Switch>
+              <Route path="/ui/login" exact component={Home}/>
               <Route path="/" exact component={Home}/>
               <Route path="/profile" exact component={Profile} />
               <Route path="/treneriai" exact component={Treneriai} />

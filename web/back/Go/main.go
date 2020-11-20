@@ -1,9 +1,10 @@
-//open ports, fetch linkai 78:8080
+//open 2 ports, fetch linkai
 //xampp, go
 //go run .\database.go .\main.go .\user.go
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -13,6 +14,8 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
+
+var db *sql.DB
 
 func main() {
 	r := mux.NewRouter()

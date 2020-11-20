@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -9,7 +10,7 @@ import (
 func getDb() *sql.DB {
 	db, err := sql.Open("mysql", "root:@tcp(localhost)/roskosmos?parseTime=true")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	// fmt.Println("connected to db")
 	// defer db.Close()

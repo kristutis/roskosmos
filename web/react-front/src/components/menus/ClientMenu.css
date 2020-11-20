@@ -1,3 +1,8 @@
+.dropint-b {
+    font-size: 1.5em; 
+    color: white;
+}
+
 .dropint:hover {
     cursor: pointer;
 }

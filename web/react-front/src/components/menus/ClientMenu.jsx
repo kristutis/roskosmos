@@ -63,7 +63,7 @@ function ClientMenu() {
                     </li> */}
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle dropint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {vardas}&nbsp;&nbsp;
+                            <a className="text-capitalize navbar-brand">{vardas}</a>
                             <img src={photoUrl} width="50" height="50" className="mr-2"/>
                         </a>                    
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

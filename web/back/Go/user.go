@@ -21,12 +21,14 @@ type User struct {
 
 func getUsersFromDb() []User {
 	db := getDb()
+	defer db.Close()
 
 	var users []User
 
 	rows, err := db.Query("select * from vartotojas")
+	defer rows.Close()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	for rows.Next() {
@@ -34,7 +36,7 @@ func getUsersFromDb() []User {
 		err = rows.Scan(&user.Id, &user.Vardas, &user.Pavarde, &user.Email,
 			&user.Slaptazodis, &user.ProfilioFoto, &user.RegData, &user.ModData, &user.Role)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		users = append(users, user)
 	}
@@ -43,7 +45,6 @@ func getUsersFromDb() []User {
 }
 
 func insertUserToDb(user User) bool {
-	// fmt.Println(user)
 	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" {
 		return false
 	}
@@ -52,6 +53,7 @@ func insertUserToDb(user User) bool {
 	id := hex.EncodeToString(hasher.Sum(nil))
 
 	db := getDb()
+	defer db.Close()
 	q, err := db.Prepare("INSERT INTO vartotojas (id, vardas, pavarde, email, slaptazodis) VALUES (?,?,?,?,?)")
 	if err != nil {
 		fmt.Println(err)
@@ -69,6 +71,7 @@ func updateUserToDb(user User) bool {
 	}
 
 	db := getDb()
+	defer db.Close()
 	q, err := db.Prepare("UPDATE vartotojas SET vardas=?, pavarde=?, email=?, slaptazodis=?, profilio_foto=?, role=? where id=?")
 	if err != nil {
 		fmt.Println(err)
