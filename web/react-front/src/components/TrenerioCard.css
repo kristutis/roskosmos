@@ -10,7 +10,7 @@
 }
 
 .card-img-top{
-    height: 250px;
+    /* height: 250px; */
 
     
     transform:scale(1);
@@ -38,14 +38,10 @@
     padding: 0.4rem 1.9rem;
 }
 
-/* .card {
+.card {
     width: 20rem;
 }
 
-.trenerio-card:hover {
-    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253) !important;
-} */
-
-/* body {
-    background-color: radial-gradient(green, green, green);
-} */
+.card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.8) !important;
+} 
