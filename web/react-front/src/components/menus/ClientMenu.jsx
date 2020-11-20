@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import profilePic from '../../images/profile-picture.png'
 import './ClientMenu.css'
@@ -7,8 +7,9 @@ function ClientMenu() {
     const [vardas, setVardas] = useState('')
     const [photoUrl, setPhotoUrl] = useState(profilePic)
 
-    var uid = getCookie('uid')
-    if (uid!=='') {             
+        
+    useEffect(() => {
+        var uid = getCookie('uid')
         fetch(window.backend+"/users/"+uid,
                 {
                     method: 'GET',
@@ -22,11 +23,11 @@ function ClientMenu() {
             if (a.profilio_foto!=='DEFAULT') {
                 setPhotoUrl(a.profilio_foto)
             }            
-        });           
-    } else {
-        return ('unauthorised')
-    }
-
+        });       
+    }, [])
+    // if (uid==='') {             
+    //     return ('unauthorised')
+    // }
     return (
         <>        
             <div className="collapse navbar-collapse">

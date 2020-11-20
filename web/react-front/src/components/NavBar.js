@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.jpg'
 import LoginModal from './LoginModal'
@@ -9,10 +9,9 @@ import SignupModal from './SignupModal'
 function NavBar() {   
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)    
     const [signupModalIsOpen, setSignupModalIsOpen] = useState(false)  
-    const [role, setRole] = useState('GUEST')
-    // setRole('KLIENTAS')    
-
-    const menu = () => {
+    const [role, setRole] = useState('GUEST')    
+    
+    useEffect(() => {
         var uid = getCookie('uid')
         if (uid!=='') {             
             fetch(window.backend+"/users/"+uid,
@@ -26,8 +25,10 @@ function NavBar() {
             ).then(res => res.json()).then(a => {
                 setRole(a.role)
             });           
-        }
+        }        
+    }, [])
 
+    const menu = () => {
         switch(role) {
             case 'KLIENTAS':
                 return <ClientMenu/>

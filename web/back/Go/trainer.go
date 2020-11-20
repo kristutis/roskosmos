@@ -21,7 +21,6 @@ func getTrainersFromDb() ([]Trainer, error) {
 	var trainers []Trainer
 
 	q := "select * from treneris"
-	fmt.Println(q)
 	rows, err := db.Query(q)
 	if err != nil {
 		fmt.Println(err)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020 m. Lap 20 d. 17:19
+-- Generation Time: 2020 m. Lap 20 d. 21:22
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -21,6 +21,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `roskosmos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `trenerio_vertinimai`
+--
+
+CREATE TABLE `trenerio_vertinimai` (
+  `fk_vertintojo_id` varchar(255) NOT NULL,
+  `fk_trenerio_id` varchar(255) NOT NULL,
+  `ivertinimas` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Sukurta duomenų kopija lentelei `trenerio_vertinimai`
+--
+
+INSERT INTO `trenerio_vertinimai` (`fk_vertintojo_id`, `fk_trenerio_id`, `ivertinimas`) VALUES
+('79d10e0cad53f7effe472236e2ae9a05881974fe', '7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 4),
+('915afaaa026be388898704c24f5ae90a72618b7a', '2319454c0bac085ee80771c864dde0dfde565db8', 3),
+('915afaaa026be388898704c24f5ae90a72618b7a', '7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 1),
+('b08296dbcb76c6ce90e806e80c5a5063ab822301', '2319454c0bac085ee80771c864dde0dfde565db8', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `treneris`
+--
+
+CREATE TABLE `treneris` (
+  `fk_trenerio_id` varchar(255) NOT NULL,
+  `kaina` double DEFAULT -1,
+  `aprasymas` text DEFAULT NULL,
+  `moto` text DEFAULT NULL,
+  `vertinimas` double DEFAULT -1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Sukurta duomenų kopija lentelei `treneris`
+--
+
+INSERT INTO `treneris` (`fk_trenerio_id`, `kaina`, `aprasymas`, `moto`, `vertinimas`) VALUES
+('2319454c0bac085ee80771c864dde0dfde565db8', 2.5, 'Pats geriausias treneris ever', 'Nemažink savo tikslų, didink pastangas', 4.5),
+('7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 10.6, 'Aktyvi trenerė', 'Aš trokštu pergalės todėl priimu iššūkius', 5);
 
 -- --------------------------------------------------------
 
@@ -57,6 +101,18 @@ INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `pr
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `trenerio_vertinimai`
+--
+ALTER TABLE `trenerio_vertinimai`
+  ADD UNIQUE KEY `vertinimas` (`fk_vertintojo_id`,`fk_trenerio_id`);
+
+--
+-- Indexes for table `treneris`
+--
+ALTER TABLE `treneris`
+  ADD PRIMARY KEY (`fk_trenerio_id`);
 
 --
 -- Indexes for table `vartotojas`

@@ -7,25 +7,24 @@ export default function DisplayAllTrenerisCards() {
 
     useEffect(() => {
         var trs = []
-    fetch(window.backend+"/trainers",
-        {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },                
-        }
-    ).then(res => res.json()).then(a => {               
-        for (let trainer of a) {           
-            var treneriukas = {
-                vardas: trainer.user.vardas,
-                foto: trainer.user.profilio_foto,
-                moto: trainer.moto,               
+        fetch(window.backend+"/trainers",
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
             }
-            trs.push(treneriukas)     
-        }
-        setTreneriai(trs)        
-    });     
-        
+        ).then(res => res.json()).then(a => {               
+            for (let trainer of a) {           
+                var treneriukas = {
+                    vardas: trainer.user.vardas,
+                    foto: trainer.user.profilio_foto,
+                    moto: trainer.moto,               
+                }
+                trs.push(treneriukas)     
+            }
+            setTreneriai(trs)        
+        });             
     }, [])
     
     
