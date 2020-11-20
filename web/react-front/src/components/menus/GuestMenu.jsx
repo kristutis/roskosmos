@@ -8,7 +8,7 @@ function GuestMenu(props) {
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <Link to="/treneriai" className="navbar-logo">
-                        <a className="nav-link" >Treneriai <span className="sr-only">(current)</span></a>
+                        <span className="nav-link" >Treneriai <span className="sr-only">(current)</span></span>
                     </Link>
                 </li>
             </ul>

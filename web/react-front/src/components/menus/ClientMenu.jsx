@@ -8,7 +8,7 @@ function ClientMenu() {
     const [photoUrl, setPhotoUrl] = useState(profilePic)
 
     var uid = getCookie('uid')
-    if (uid!='') {             
+    if (uid!=='') {             
         fetch(window.backend+"/users/"+uid,
                 {
                     method: 'GET',
@@ -19,7 +19,7 @@ function ClientMenu() {
                 }
         ).then(res => res.json()).then(a => {
             setVardas(a.vardas)
-            if (a.profilio_foto!='DEFAULT') {
+            if (a.profilio_foto!=='DEFAULT') {
                 setPhotoUrl(a.profilio_foto)
             }            
         });           
@@ -33,22 +33,22 @@ function ClientMenu() {
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link to="/treneriai" className="navbar-logo">
-                            <a className="nav-link" >Treneriai <span className="sr-only">(current)</span></a>
+                            <span className="nav-link" >Treneriai <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/sales-rezervacija" className="navbar-logo">
-                            <a className="nav-link" >Rezervuoti salės laiką <span className="sr-only">(current)</span></a>
+                            <span className="nav-link" >Rezervuoti salės laiką <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/" className="navbar-logo">
-                            <a className="nav-link" >Prekių katalogas <span className="sr-only">(current)</span></a>
+                            <span className="nav-link" >Prekių katalogas <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/" className="navbar-logo">
-                            <a className="nav-link" >Sąskaitos <span className="sr-only">(current)</span></a>
+                            <span className="nav-link" >Sąskaitos <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>
                 </ul>
@@ -62,17 +62,17 @@ function ClientMenu() {
                         <a className="nav-link" >Left</a>
                     </li> */}
                     <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle dropint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <a className="text-capitalize navbar-brand">{vardas}</a>
+                        <span className="nav-link dropdown-toggle dropint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="text-capitalize navbar-brand">{vardas}</span>
                             <img src={photoUrl} width="50" height="50" className="mr-2"/>
-                        </a>                    
+                        </span>                    
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <Link to="/profile">
-                                <a className="dropdown-item dropint" >Naudotojo profilis</a>
+                                <span className="dropdown-item dropint" >Naudotojo profilis</span>
                             </Link>
                             <div className="dropdown-divider"></div>
                             <Link to="/">
-                                <a className="dropdown-item dropint" onClick={clearCookie}>Atsijungti</a>
+                                <span className="dropdown-item dropint" onClick={clearCookie}>Atsijungti</span>
                             </Link>
                         </div>
                     </li>

@@ -1,25 +1,45 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './TrenerioCard.css'
 
-export default function DisplayAllTrenerisCards(props) {
-    const ts = props.treneriai //array
+export default function DisplayAllTrenerisCards() {
+    const [treneriai, setTreneriai] = useState([])
+
+    useEffect(() => {
+        var trs = []
+    fetch(window.backend+"/trainers",
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },                
+        }
+    ).then(res => res.json()).then(a => {               
+        for (let trainer of a) {           
+            var treneriukas = {
+                vardas: trainer.user.vardas,
+                foto: trainer.user.profilio_foto,
+                moto: trainer.moto,               
+            }
+            trs.push(treneriukas)     
+        }
+        setTreneriai(trs)        
+    });     
+        
+    }, [])
+    
+    
+
     return (
         <div className="ts container-fluid d-flex justify content-center">
             <div className="row">
-
                     {/* optional */}
-                    {ts.map(t => 
-                    <div className="col-md-4 my-2">
+                    {treneriai.map((t, index)  => 
+                    <div className="col-md-4 my-2" key={index}>
                         <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
                     </div>
                     )}
-                    {ts.map(t => 
-                    <div className="col-md-4 my-2">
-                        <TrenerioCard imgsrc={t.foto} title={t.vardas} text={t.moto}/>
-                    </div>
-                    )}
-                    {/* optional */}
+               
             </div>
         </div>
     )
@@ -36,7 +56,7 @@ function TrenerioCard(props) {
                 <h4 className="card-title">{props.title}</h4>
                 <p className="card-text text-secondary">{props.text}</p>
                 <Link to="/treneriai/treneris"> 
-                    <a href="#" className="btn btn-outline-success">Plačiau</a>
+                    <span className="btn btn-outline-success">Plačiau</span>
                 </Link>
             </div>            
         </div>

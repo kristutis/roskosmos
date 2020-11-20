@@ -40,7 +40,7 @@ function NavBar() {
     <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-dark">            
         <Link to="/" className="navbar-logo"> 
             <img className="rounded-circle mr-2" src={logo} width="40" height="40"/>
-            <a className="navbar-brand">ROSKOSMOS</a>
+            <span className="navbar-brand">ROSKOSMOS</span>
         </Link> 
         
         {menu()}

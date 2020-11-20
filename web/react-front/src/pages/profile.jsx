@@ -13,10 +13,10 @@ export default function Profile() {
             <p className="title">CEO & Founder, Example</p>
             <p>Harvard University</p>
             <div className="prifile-div">
-                <a className="profile-a"><i className="fa fa-dribbble"></i></a> 
-                <a className="profile-a"><i className="fa fa-twitter"></i></a>  
-                <a className="profile-a"><i className="fa fa-linkedin"></i></a>  
-                <a className="profile-a"><i className="fa fa-facebook"></i></a> 
+                <span className="profile-a"><i className="fa fa-dribbble"></i></span> 
+                <span className="profile-a"><i className="fa fa-twitter"></i></span>  
+                <span className="profile-a"><i className="fa fa-linkedin"></i></span>  
+                <span className="profile-a"><i className="fa fa-facebook"></i></span> 
             </div>
             <p><button className="profile-button">Contact</button></p>
             </div>
