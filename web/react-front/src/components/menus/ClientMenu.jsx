@@ -64,7 +64,7 @@ function ClientMenu() {
                     <li className="nav-item dropdown">
                         <span className="nav-link dropdown-toggle dropint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span className="text-capitalize navbar-brand">{vardas}</span>
-                            <img src={photoUrl} width="50" height="50" className="mr-2"/>
+                            <img src={photoUrl} width="50" height="50" className="mr-2" alt="" />
                         </span>                    
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <Link to="/profile">
@@ -95,10 +95,10 @@ function getCookie(cname) {
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
       var c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) === ' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length, c.length);
       }
     }

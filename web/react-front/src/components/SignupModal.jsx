@@ -11,11 +11,11 @@ export default function SignupModal(props) {
 
     function register() {
         console.log(password)
-        if (repeatPass!=password) {
+        if (repeatPass!==password) {
             alert("slaptažodžiai nesutampa!")
             return
         }
-        if (vardas=='' || pavarde=='' || email=='' || password=='') {
+        if (vardas==='' || pavarde==='' || email=='' || password==='') {
             alert('neužpildyti visi laukai!')
             return
         }

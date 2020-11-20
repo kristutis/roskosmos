@@ -50,7 +50,7 @@ function TrenerioCard(props) {
         <div className="card text-center shadow my-2">
             <div className="trenerio-card"></div>
             <div className="overflow">
-                <img className="card-img-top" src={props.imgsrc} />
+                <img className="card-img-top" src={props.imgsrc} alt="" />
             </div>
             <div className="card-body text-dark">
                 <h4 className="card-title">{props.title}</h4>
