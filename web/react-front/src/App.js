@@ -1,7 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import React from 'react';
+import React, {PropTpes} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -12,6 +12,9 @@ import SalesRezervacija from './pages/SalesRezervacija';
 import Treneris from './pages/Treneris';
 
 function App() {
+  // window.backend="http://localhost:8000/api"
+  window.backend="http://78.60.101.121:8000/api"
+
   return (    
     <div className="App">              
         <Router>        

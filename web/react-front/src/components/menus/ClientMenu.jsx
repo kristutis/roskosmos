@@ -9,7 +9,7 @@ function ClientMenu() {
 
     var uid = getCookie('uid')
     if (uid!='') {             
-        fetch("http://localhost:8000/api/users/"+uid,
+        fetch(window.backend+"/users/"+uid,
                 {
                     method: 'GET',
                     cache: 'no-cache',

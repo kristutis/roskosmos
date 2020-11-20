@@ -7,7 +7,7 @@ export default function LoginModal(props) {
     const [password, setPassword] = useState('')
 
     function login() {
-        fetch("http://localhost:8000/api/users",
+        fetch(window.backend+"/users",
             {
                 method: 'GET',
                 cache: 'no-cache',

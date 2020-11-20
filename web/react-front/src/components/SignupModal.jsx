@@ -31,7 +31,7 @@ export default function SignupModal(props) {
             slaptazodis: password,
         }
 
-        fetch("http://localhost:8000/api/users",
+        fetch(window.backend+"/users",
             {
                 method: 'POST',
                 headers: {
