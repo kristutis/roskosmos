@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import TrainerComments from '../components/TrainerComments'
 import './Treneris.css'
 
@@ -7,6 +7,24 @@ import './Treneris.css'
 export default function Treneris(props) {
     const trenerioDd = props.match.params.id
     console.log(isLoggedIn())
+
+    useEffect(() => {
+        fetch(window.backend+"/trainers/"+trenerioDd,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },                
+                })
+        .then(res => res.json())
+        .then(a => {
+            console.log(a)       
+        });       
+    }, [])
+
+    if (isLoggedIn()===false) {
+        return 'unauthorised'
+    }
 
     return (
         <div className="first-div">

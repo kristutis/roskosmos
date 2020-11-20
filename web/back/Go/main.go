@@ -6,6 +6,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -32,8 +33,30 @@ func main() {
 
 	//trainers
 	r.HandleFunc("/api/trainers", getTrainers).Methods("GET")
+	r.HandleFunc("/api/trainers/{id}", getTrainersById).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
+}
+
+//GET http://localhost:8000/api/trainers/{id}
+func getTrainersById(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning trainer")
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+
+	trainers, err := getTrainersFromDb()
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+
+	for _, trainer := range trainers {
+		if trainer.TrainerId == param["id"] {
+			json.NewEncoder(w).Encode(trainer)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(errors.New("cannot find trainer"))
 }
 
 //GET http://localhost:8000/api/trainers
