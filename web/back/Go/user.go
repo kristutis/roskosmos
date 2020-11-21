@@ -14,9 +14,9 @@ type User struct {
 	Email        string    `json:"email"`
 	Slaptazodis  string    `json:"slaptazodis"`
 	ProfilioFoto string    `json:"profilio_foto"`
+	Role         string    `json:"role"`
 	RegData      time.Time `json:"reg_date"`
 	ModData      time.Time `json:"modify_date"`
-	Role         string    `json:"role"`
 }
 
 func getUsersFromDb() []User {
@@ -66,7 +66,9 @@ func insertUserToDb(user User) bool {
 
 func updateUserToDb(user User) bool {
 	fmt.Println(user)
+	fmt.Println(user.Role)
 	if user.Vardas == "" || user.Pavarde == "" || user.Email == "" || user.Slaptazodis == "" || user.ProfilioFoto == "" || user.Role == "" {
+		fmt.Println("hello1")
 		return false
 	}
 
@@ -74,6 +76,7 @@ func updateUserToDb(user User) bool {
 	defer db.Close()
 	q, err := db.Prepare("UPDATE vartotojas SET vardas=?, pavarde=?, email=?, slaptazodis=?, profilio_foto=?, role=? where id=?")
 	if err != nil {
+		fmt.Println("hello2")
 		fmt.Println(err)
 		return false
 	} else {

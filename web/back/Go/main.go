@@ -111,7 +111,9 @@ func updateUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
 	var user User
-	_ = json.NewDecoder(r.Body).Decode(&user)
+	fmt.Println(r.Body)
+	f := json.NewDecoder(r.Body).Decode(&user)
+	fmt.Println(f, "f")
 	if user.Id != param["id"] {
 		json.NewEncoder(w).Encode(false)
 		fmt.Println("ids do not match")

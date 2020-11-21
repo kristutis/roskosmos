@@ -10,17 +10,16 @@ export default function SignupModal(props) {
     const [repeatPass, setRepeatPass] = useState('')
 
     function register() {
-        console.log(password)
         if (repeatPass!==password) {
-            alert("slaptažodžiai nesutampa!")
+            alert("Slaptažodžiai nesutampa!")
             return
         }
         if (vardas==='' || pavarde==='' || email=='' || password==='') {
-            alert('neužpildyti visi laukai!')
+            alert('Neužpildyti visi laukai!')
             return
         }
         if (!(email.includes('@') && email.includes('.'))) {
-            alert("You have entered an invalid email address!")
+            alert("Blogai įvestas el. paštas!")
             return
         }
 
@@ -41,7 +40,7 @@ export default function SignupModal(props) {
             }
         ).then(res => res.json()).then(a => {              
                 if (a===true) {
-                    alert('success')      
+                    alert('Registracija pavyko!')      
                     props.toClose(false)          
                 } else {
                     alert('cannot register')
