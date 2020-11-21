@@ -25,9 +25,7 @@ function ClientMenu() {
             }            
         });       
     }, [])
-    // if (uid==='') {             
-    //     return ('unauthorised')
-    // }
+
     return (
         <>        
             <div className="collapse navbar-collapse">
