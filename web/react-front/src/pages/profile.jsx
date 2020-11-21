@@ -12,7 +12,7 @@ export default function Profile() {
             <div className="row base-div bordered-div">
                     <div className="col-md-4 first-profile-div">
                         <br></br><br></br><br></br>
-                        <img className="rounded-circle prof-img" width="300" height="300" src="https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffta-ez-prod%2Fez%2Fimages%2F1%2F9%2F7%2F1%2F1481791-4-eng-GB%2Farchitecture-camera-city-827209+%281%29.jpg%3Fv1?width=700&source=ftadviser"/>
+                        <img className="rounded-circle prof-img" src="https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffta-ez-prod%2Fez%2Fimages%2F1%2F9%2F7%2F1%2F1481791-4-eng-GB%2Farchitecture-camera-city-827209+%281%29.jpg%3Fv1?width=700&source=ftadviser"/>
                         <br></br><br></br>
                         <h1 className="text-center text-white">KLIENTAS</h1>
                         <br></br><br></br>
@@ -57,6 +57,7 @@ export default function Profile() {
                                 <p>data</p>
                             </div>                                                          
                         </div> 
+                        <button type="button" class="btn btn-outline-secondary keisti-mygtukas">Patvirtinti pakeitimus</button>
                     </div>
             </div>
         </div>
