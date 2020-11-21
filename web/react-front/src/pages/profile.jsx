@@ -57,6 +57,7 @@ export default function Profile() {
                                 <p>data</p>
                             </div>                                                          
                         </div> 
+                        <br></br><br></br>
                         <button type="button" class="btn btn-outline-secondary keisti-mygtukas">Patvirtinti pakeitimus</button>
                     </div>
             </div>
