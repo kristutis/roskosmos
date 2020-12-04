@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function TrainerComments(props) {
+    console.log(props.comms)
     if (props.comms==null) {
         return (
             <div>

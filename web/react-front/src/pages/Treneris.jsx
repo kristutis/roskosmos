@@ -80,7 +80,7 @@ export default function Treneris(props) {
                                             </tr>
                                             <tr>
                                                 <th scope="row">Vertinimas:</th>
-                                                <td><span className="badge badge-primary badge-pill">{trenerioInfo.vertinimas}</span></td>
+                                                <td><span className="badge badge-primary badge-pill">{trenerioInfo.vertinimas} / 5</span></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Kaina:</th>
@@ -94,10 +94,20 @@ export default function Treneris(props) {
                     </div>
                     <div className="col-md-6">        
                         <TrainerComments comms={komentarai}/>
-                        <h1>Ivertinimas</h1>
+                        <div className="row">                            
+                            <div className="col-md-6">
+                                <h4>komentaras</h4>
+                                <input type="text"></input>
+                            </div>
+                            <div className="col-md-6">
+                                <h1>Ivertinimas</h1>
+                            </div>
+                        </div>
+
+
+                        
                         <br></br>
-                        <h4>komentaras</h4>
-                        <input width="100" height="100" type="text"></input>
+                        
                     </div>           
                 </div>
             </div> 
