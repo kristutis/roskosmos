@@ -37,7 +37,7 @@ func main() {
 
 	//trenerio vertinimai
 	r.HandleFunc("/api/ratings/{id}", getTrainerRatingsById).Methods("GET")
-	r.HandleFunc("/api/raitings/", putRating).Methods("PUT")
+	r.HandleFunc("/api/ratings", putRating).Methods("PUT")
 
 	//trenerio komentarai
 	r.HandleFunc("/api/comments/{id}", getTrainerCommentsById).Methods("GET")
@@ -72,19 +72,19 @@ func getTrainerRatingsById(w http.ResponseWriter, r *http.Request) {
 }
 
 func putRating(w http.ResponseWriter, r *http.Request) {
-	// fmt.Println("putting rating")
-	// w.Header().Set("Content-Type", "application/json")
+	fmt.Println("putting rating")
+	w.Header().Set("Content-Type", "application/json")
 
-	// var user User
-	// _ = json.NewDecoder(r.Body).Decode(&user)
-	// if user.Id != param["id"] {
-	// 	json.NewEncoder(w).Encode(false)
-	// 	fmt.Println("ids do not match")
-	// 	return
-	// }
+	var rating Rating
+	_ = json.NewDecoder(r.Body).Decode(&rating)
+	if rating.RaterId == rating.TrainerId {
+		err := errors.New("savęs vertinti negalima")
+		json.NewEncoder(w).Encode(err)
+		return
+	}
 
-	// success := updateUserToDb(user)
-	// json.NewEncoder(w).Encode(success)
+	err := setRatingToDb(rating)
+	json.NewEncoder(w).Encode(err)
 }
 
 //GET http://localhost:8000/api/trainers/{id}
