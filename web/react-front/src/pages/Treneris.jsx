@@ -55,7 +55,31 @@ export default function Treneris(props) {
     }, [])
 
     if (rating) {
+        let rat = {
+            fk_vertintojo_id: getCookie('uid'),
+            fk_trenerio_id: trenerioId,
+            ivertinimas: rating,
+        }
         console.log(rating)
+
+        fetch(window.backend+"/ratings",
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(rat)
+            }
+        ).then(res => res.json()).then(a => {              
+                if (a===null) {
+                    console.log("viskas ok")
+                } else {
+                    console.log("neok")
+                }             
+        });
+
+        alert('Ačiū už įvertinimą!')
+
         setrating(null)
     }
 
