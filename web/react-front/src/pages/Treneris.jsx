@@ -62,7 +62,7 @@ export default function Treneris(props) {
                     <div className="col-md-6">       
                         <div className="row">    
                             <div className="col-md-12">                    
-                                <img className="img-rounded" height="auto" width="70%" alt=""  src={trenerioInfo.profilio_foto}/>
+                                <img className="rounded-circle img-thumbnail" height="auto" width="90%" alt=""  src={trenerioInfo.profilio_foto}/>
                                 <br></br><br></br>
                                 <h4 className="text-white">{"“"+trenerioInfo.moto+"”"}</h4>
                                 <br></br><br></br>                                                               
@@ -91,15 +91,15 @@ export default function Treneris(props) {
                     </div>
                     <div className="col-md-6">       
                         {komentarai ? <TrainerComments comms={komentarai}/> : null }                        
-                        <div className="row">                            
-                            <div className="col-md-6">
-                                <h4>komentaras</h4>
-                                <input type="text"></input>
-                            </div>
-                            <div className="col-md-6">
-                                <h1>Ivertinimas</h1>
-                            </div>
-                        </div>                        
+                                                    
+                        <h1>Ivertinimas</h1>
+                                
+                        <div className="input-group mb-2">                            
+                            <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Parašykite atsiliepimą!"/>   
+                            <div className="input-group-prepend">
+                            <button type="button" className="btn btn-secondary">Komentuoti</button>
+                            </div>    
+                        </div>
                         <br></br>                        
                     </div>           
                 </div>
