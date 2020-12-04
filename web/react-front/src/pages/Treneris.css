@@ -6,3 +6,12 @@
     width: 70%;
     margin:auto;
 }
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+.radio-iputas {
+    display: none;
+}

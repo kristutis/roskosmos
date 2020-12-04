@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import TrainerComments from '../components/TrainerComments'
 import './Treneris.css'
+import {FaStar} from 'react-icons/fa'
 
 
 export default function Treneris(props) {
@@ -8,6 +9,8 @@ export default function Treneris(props) {
 
     const [komentarai, setKomentarai] = useState(null)
     const [trenerioInfo, setTrenerioInfo] = useState({})    
+
+    const [rating, setrating] = useState(null)
 
     useEffect(() => {
         fetch(window.backend+"/trainers/"+trenerioId,
@@ -62,7 +65,7 @@ export default function Treneris(props) {
                     <div className="col-md-6">       
                         <div className="row">    
                             <div className="col-md-12">                    
-                                <img className="rounded-circle img-thumbnail" height="auto" width="90%" alt=""  src={trenerioInfo.profilio_foto}/>
+                                <img className="rounded-circle img-thumbnail" height="auto" width="80%" alt=""  src={trenerioInfo.profilio_foto}/>
                                 <br></br><br></br>
                                 <h4 className="text-white">{"“"+trenerioInfo.moto+"”"}</h4>
                                 <br></br><br></br>                                                               
@@ -93,7 +96,18 @@ export default function Treneris(props) {
                         {komentarai ? <TrainerComments comms={komentarai}/> : null }                        
                                                     
                         <h1>Ivertinimas</h1>
-                                
+                        {[...Array(5)].map((star, i) => {
+                            const ratingValue = i+1
+                            return (                                
+                                <label>
+                                    <input type="radio" className="radio-iputas" value={ratingValue} onClick={() => setrating(ratingValue)} />                                
+                                    <FaStar size={50} className="star" color={ratingValue<=rating ? "#ffc107" : "#e4e5e9"} />                         
+                                </label> 
+                            )
+                        })}
+
+                        <br></br><br></br>
+
                         <div className="input-group mb-2">                            
                             <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Parašykite atsiliepimą!"/>   
                             <div className="input-group-prepend">
