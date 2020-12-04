@@ -5,20 +5,13 @@ import defaultPic from '../images/profile-picture.png'
 
 
 export default function Treneris(props) {
-    const trenerioDd = props.match.params.id
+    const trenerioId = props.match.params.id
 
     const [komentarai, setKomentarai] = useState([])
-    const [trenerioInfo, setTrenerioInfo] = useState({
-        // aprasymas:"",
-        // kaina:0,
-        // moto:"",
-        // vardas:"",
-        // pavarde:"",
-        // profilio_foto:"",
-    })    
+    const [trenerioInfo, setTrenerioInfo] = useState({})    
 
     useEffect(() => {
-        fetch(window.backend+"/trainers/"+trenerioDd,
+        fetch(window.backend+"/trainers/"+trenerioId,
                 {
                     method: 'GET',
                     headers: {
@@ -27,7 +20,6 @@ export default function Treneris(props) {
                 })
         .then(res => res.json())
         .then(a => {
-            // console.log(a)       
             let ti = {
                 aprasymas:a.aprasymas,
                 kaina:a.kaina,
@@ -40,7 +32,7 @@ export default function Treneris(props) {
             setTrenerioInfo(ti)            
         });       
 
-        fetch(window.backend+"/comments/"+trenerioDd,
+        fetch(window.backend+"/comments/"+trenerioId,
                 {
                     method: 'GET',
                     headers: {
@@ -73,28 +65,30 @@ export default function Treneris(props) {
                     <div className="col-md-6">       
                         <div className="row">    
                             <div className="col-md-12">                    
-                                <img height="auto" width="70%" alt=""  src={trenerioInfo.profilio_foto}/>
+                                <img className="img-rounded" height="auto" width="70%" alt=""  src={trenerioInfo.profilio_foto}/>
                                 <br></br><br></br>
                                 <h4 className="text-white">{"“"+trenerioInfo.moto+"”"}</h4>
                                 <br></br><br></br>                                                               
                             </div>
-                            <div className="col-md-12">                    
-                                <table className="table table-secondary" >
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Aprašymas:</th>
-                                            <th scope="col">{trenerioInfo.aprasymas}</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Vertinimas:</th>
-                                            <td><span className="badge badge-primary badge-pill">{trenerioInfo.vertinimas}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Kaina:</th>
-                                            <td><span className="badge badge-primary badge-pill">{trenerioInfo.kaina+"€"}</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div className="col-md-12">     
+                                <div className="trenerio-info-table">              
+                                    <table className="table table-secondary" >
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Aprašymas:</th>
+                                                <th scope="col">{trenerioInfo.aprasymas}</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Vertinimas:</th>
+                                                <td><span className="badge badge-primary badge-pill">{trenerioInfo.vertinimas}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Kaina:</th>
+                                                <td><span className="badge badge-primary badge-pill">{trenerioInfo.kaina+"€"}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -160,7 +154,6 @@ function SudetiKomentuotojus(comms) {
                         if (c.foto=="DEFAULT") {
                             c.foto=defaultPic
                         }
-                        console.log(c)
                         updatedComms.push(c)
                     }
                 }
