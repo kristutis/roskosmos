@@ -11,6 +11,9 @@ export default function Treneris(props) {
     const [trenerioInfo, setTrenerioInfo] = useState({})    
 
     const [rating, setrating] = useState(null)
+    const [hover, setHover] = useState(null)
+
+    const [naujasKomentaras, setNaujasKomentaras] = useState(null)
 
     useEffect(() => {
         fetch(window.backend+"/trainers/"+trenerioId,
@@ -51,7 +54,18 @@ export default function Treneris(props) {
         });          
     }, [])
 
+    if (rating) {
+        console.log(rating)
+        setrating(null)
+    }
 
+    function Komentuoti() {
+        if (naujasKomentaras) {
+            console.log(naujasKomentaras)
+        } else {
+            alert("Įrašykite komentarą!")
+        }
+    }    
 
     if (isLoggedIn()===false) {
         return 'unauthorised'
@@ -95,13 +109,25 @@ export default function Treneris(props) {
                     <div className="col-md-6">       
                         {komentarai ? <TrainerComments comms={komentarai}/> : null }                        
                                                     
-                        <h1>Ivertinimas</h1>
+                        <h4 className="text-white">Įvertinkite!</h4>
                         {[...Array(5)].map((star, i) => {
                             const ratingValue = i+1
+                            // console.log(rating)
                             return (                                
                                 <label>
-                                    <input type="radio" className="radio-iputas" value={ratingValue} onClick={() => setrating(ratingValue)} />                                
-                                    <FaStar size={50} className="star" color={ratingValue<=rating ? "#ffc107" : "#e4e5e9"} />                         
+                                    <input 
+                                        type="radio"
+                                        className="radio-iputas" 
+                                        value={ratingValue} 
+                                        onClick={() => setrating(ratingValue)}                                        
+                                         />                                
+                                    <FaStar 
+                                        size={50} 
+                                        className="star" 
+                                        color={ratingValue<=(hover || rating) ? "#ffc107" : "#e4e5e9"}         
+                                        onMouseEnter={() => setHover(ratingValue)}
+                                        onMouseLeave={() => setHover(null)}                               
+                                         />                         
                                 </label> 
                             )
                         })}
@@ -109,9 +135,9 @@ export default function Treneris(props) {
                         <br></br><br></br>
 
                         <div className="input-group mb-2">                            
-                            <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Parašykite atsiliepimą!"/>   
+                            <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Parašykite atsiliepimą!" onChange={e => setNaujasKomentaras(e.target.value)}/>   
                             <div className="input-group-prepend">
-                            <button type="button" className="btn btn-secondary">Komentuoti</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => Komentuoti()} >Komentuoti</button>
                             </div>    
                         </div>
                         <br></br>                        
