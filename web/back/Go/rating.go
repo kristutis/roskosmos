@@ -40,7 +40,6 @@ func setRatingToDb(rating Rating) error {
 
 	if exists {
 		q := "UPDATE `trenerio_vertinimai` SET `ivertinimas` = '" + fmt.Sprintf("%d", int(rating.Rating)) + "' WHERE `trenerio_vertinimai`.`fk_vertintojo_id` = '" + rating.RaterId + "' AND `trenerio_vertinimai`.`fk_trenerio_id` = '" + rating.TrainerId + "';"
-		fmt.Println(q)
 		_, err := db.Query(q)
 		if err != nil {
 			fmt.Print(err)
@@ -53,6 +52,52 @@ func setRatingToDb(rating Rating) error {
 			return err
 		}
 		q.Exec(rating.RaterId, rating.TrainerId, rating.Rating)
+	}
+
+	err = updateAverageRating(rating.TrainerId)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func updateAverageRating(trainerId string) error {
+	db := getDb()
+	defer db.Close()
+
+	q := "select * from trenerio_vertinimai where fk_trenerio_id='" + trainerId + "'"
+	rows, err := db.Query(q)
+	defer rows.Close()
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	var ratings []float64
+	for rows.Next() {
+		var r Rating
+		err = rows.Scan(&r.RaterId, &r.TrainerId, &r.Rating)
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		ratings = append(ratings, r.Rating)
+	}
+
+	var average float64 = 0
+	for _, r := range ratings {
+		average += r
+	}
+	average = average / float64(len(ratings))
+	fmt.Println(ratings)
+	fmt.Println(average)
+
+	q = "UPDATE `treneris` SET `vertinimas` = '" + fmt.Sprintf("%.2f", average) + "' WHERE `treneris`.`fk_trenerio_id` = '" + trainerId + "';"
+	_, err = db.Query(q)
+	if err != nil {
+		fmt.Print(err)
+		return err
 	}
 
 	return nil
