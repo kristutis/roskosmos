@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020 m. Lap 20 d. 21:40
+-- Generation Time: 2020 m. Grd 04 d. 18:48
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -21,6 +21,61 @@ SET time_zone = "+00:00";
 --
 -- Database: `roskosmos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `rezervaciju_laikai`
+--
+
+CREATE TABLE `rezervaciju_laikai` (
+  `laikas_nuo` varchar(255) NOT NULL,
+  `laikas_iki` varchar(255) NOT NULL,
+  `kuri_diena` varchar(255) NOT NULL,
+  `zmoniu_skaicius` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `sporto_sale`
+--
+
+CREATE TABLE `sporto_sale` (
+  `id` int(11) NOT NULL,
+  `adresas` varchar(255) NOT NULL,
+  `darbo_laikas` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Sukurta duomenų kopija lentelei `sporto_sale`
+--
+
+INSERT INTO `sporto_sale` (`id`, `adresas`, `darbo_laikas`) VALUES
+(1, 'Linkuvos g. 16', '08:00-20:00;08:00-20:00;08:00-20:00;08:00-20:00;08:00-20:00;10:00-18:00;10:00-14:00;');
+
+-- --------------------------------------------------------
+
+--
+-- Sukurta duomenų struktūra lentelei `trenerio_komentarai`
+--
+
+CREATE TABLE `trenerio_komentarai` (
+  `fk_komentuotojo_id` varchar(255) NOT NULL,
+  `fk_trenerio_id` varchar(255) NOT NULL,
+  `komentaras` varchar(255) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Sukurta duomenų kopija lentelei `trenerio_komentarai`
+--
+
+INSERT INTO `trenerio_komentarai` (`fk_komentuotojo_id`, `fk_trenerio_id`, `komentaras`, `data`) VALUES
+('2319454c0bac085ee80771c864dde0dfde565db8', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 'Bloga trenerė', '2020-12-04 14:01:32'),
+('2319454c0bac085ee80771c864dde0dfde565db8', '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 'Pilnas optimizmo', '2020-12-04 14:01:32'),
+('79d10e0cad53f7effe472236e2ae9a05881974fe', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 'Gera trenerė', '2020-12-04 12:55:09'),
+('b08296dbcb76c6ce90e806e80c5a5063ab822301', '2319454c0bac085ee80771c864dde0dfde565db8', 'Patiko bendravimo forma', '2020-12-04 17:37:13');
 
 -- --------------------------------------------------------
 
@@ -93,19 +148,38 @@ CREATE TABLE `vartotojas` (
 INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `profilio_foto`, `reg_date`, `modify_date`, `role`) VALUES
 ('0a62a63dbb923f4528d73ca69069b61a2b06342f', 'Rimas', 'Rimulis', 'rimantu69@gg.ru', 'r1m0l1s', '/images/profile_samples/4.jpg', '2020-11-20 14:28:48', '2020-11-20 20:30:45', 'KLIENTAS'),
 ('19e0753f8488c1403558c63767cb59f4bdf7a73a', 'Raminta', 'Sadauksaitė', 'raminciukas@gmail.com', 'r0mr0m', 'https://randomuser.me/api/portraits/women/59.jpg', '2020-11-20 20:29:32', '2020-11-20 20:31:29', 'TRENERIS'),
+('1b1b7cfb08d207b04176d4a9759de1420dc54ab4', 'Hello', 'hello', 'h@h.h', 'hh', 'DEFAULT', '2020-11-21 14:33:39', '2020-11-21 14:33:39', 'KLIENTAS'),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', 'Rimvydas', 'Valatka', 'rimekas@r.lt', 'rimux', 'https://cdn2.f-cdn.com/files/download/67637030/screenshot.png', '2020-11-19 14:09:18', '2020-11-19 14:40:22', 'KLIENTAS'),
 ('2319454c0bac085ee80771c864dde0dfde565db8', 'Petras', 'Petrowič', 'petrowizc@gmail.com', 's3cret!', '/images/profile_samples/2.jpg', '2020-11-20 14:30:14', '2020-11-20 14:34:14', 'TRENERIS'),
 ('658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 'Akvilė', 'Vasiliauskaitė', 'akviliozas@g.gg', 'ak47', '/images/profile_samples/1.jpg', '2020-11-20 20:27:56', '2020-11-20 20:31:40', 'TRENERIS'),
 ('79d10e0cad53f7effe472236e2ae9a05881974fe', 'Jonas', 'Jonaitis', 'juozelyzas@gmail.com', 'job!', '/images/profile_samples/9.jpg', '2020-11-19 12:58:38', '2020-11-20 14:35:12', 'KLIENTAS'),
-('7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 'Alina', 'Fiodorova', 'alionochka@yandex.ru', 'al1on0va', 'DEFAULT', '2020-11-20 14:29:35', '2020-11-20 20:31:39', 'KLIENTAS'),
+('7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 'Alina', 'Fiodorova', 'alionochka@yandex.ru', 'al1on0va', 'DEFAULT', '2020-11-20 14:29:35', '2020-11-20 23:12:13', 'KLIENTAS'),
 ('915afaaa026be388898704c24f5ae90a72618b7a', 'gedas', 'kekstas', 'kekstasgedas@gmail.com', 'pass123', 'https://scontent.fkun1-1.fna.fbcdn.net/v/t1.0-9/39944380_1985209388210390_4630112373020033024_o.jpg?_nc_cat=110&_nc_map=test-rt&ccb=2&_nc_sid=09cbfe&_nc_ohc=PcNXkMD-wlkAX9LnQTm&_nc_ht=scontent.fkun1-1.fna&oh=37f9dfd7cfec7c847cf62f5b356ef1d4&oe=5FDEEF5A', '2020-11-20 12:08:39', '2020-11-20 12:10:37', 'KLIENTAS'),
 ('9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 'Dovydas', 'Kavaliauskas', 'dovyzas@gmail.com', 'd0v33', 'https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70', '2020-11-20 20:28:23', '2020-11-20 20:31:14', 'TRENERIS'),
 ('b08296dbcb76c6ce90e806e80c5a5063ab822301', 'testas', 'testauskas', 'test@gmail.com', 'testas123', 'DEFAULT', '2020-11-19 17:05:59', '2020-11-19 17:05:59', 'KLIENTAS'),
-('d86478c67661eee2390120b90f94821d391c771e', 'Sausainis', 'Sausainius', 'sus@gmail.com', 'as4f6a8sf4', '/images/profile_samples/6.jpg', '2020-11-20 14:28:19', '2020-11-20 20:30:40', 'KLIENTAS');
+('d86478c67661eee2390120b90f94821d391c771e', 'Sausainyzas', 'Sausainiusas', 'susazas@gmail.com', '4asdg69asd4g', '/images/profile_samples/4.jpg', '2020-11-20 14:28:19', '2020-11-21 19:17:47', 'KLIENTAS');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `rezervaciju_laikai`
+--
+ALTER TABLE `rezervaciju_laikai`
+  ADD PRIMARY KEY (`kuri_diena`,`laikas_nuo`,`laikas_iki`);
+
+--
+-- Indexes for table `sporto_sale`
+--
+ALTER TABLE `sporto_sale`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `trenerio_komentarai`
+--
+ALTER TABLE `trenerio_komentarai`
+  ADD PRIMARY KEY (`fk_komentuotojo_id`,`fk_trenerio_id`);
 
 --
 -- Indexes for table `trenerio_vertinimai`
@@ -124,6 +198,16 @@ ALTER TABLE `treneris`
 --
 ALTER TABLE `vartotojas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `sporto_sale`
+--
+ALTER TABLE `sporto_sale`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
