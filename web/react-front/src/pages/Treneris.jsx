@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import TrainerComments from '../components/TrainerComments'
 import './Treneris.css'
-import defaultPic from '../images/profile-picture.png'
 
 
 export default function Treneris(props) {
     const trenerioId = props.match.params.id
 
-    const [komentarai, setKomentarai] = useState([])
+    const [komentarai, setKomentarai] = useState(null)
     const [trenerioInfo, setTrenerioInfo] = useState({})    
 
     useEffect(() => {
@@ -41,17 +40,15 @@ export default function Treneris(props) {
                 })
         .then(res => res.json())
         .then(a => {    
-            if (a!=null) {
-                const comms = SudetiKomentuotojus(a)
-                setKomentarai(comms)  
+            if (a!==null) {
+                setKomentarai(a)  
             } else {
-                setKomentarai(null)
+                setKomentarai([])
             }                    
         });          
     }, [])
 
-    // console.log(trenerioInfo)
-    // console.log(komentarai)
+
 
     if (isLoggedIn()===false) {
         return 'unauthorised'
@@ -92,8 +89,8 @@ export default function Treneris(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">        
-                        <TrainerComments comms={komentarai}/>
+                    <div className="col-md-6">       
+                        {komentarai ? <TrainerComments comms={komentarai}/> : null }                        
                         <div className="row">                            
                             <div className="col-md-6">
                                 <h4>komentaras</h4>
@@ -102,12 +99,8 @@ export default function Treneris(props) {
                             <div className="col-md-6">
                                 <h1>Ivertinimas</h1>
                             </div>
-                        </div>
-
-
-                        
-                        <br></br>
-                        
+                        </div>                        
+                        <br></br>                        
                     </div>           
                 </div>
             </div> 
@@ -140,36 +133,3 @@ function isLoggedIn() {
     return true
 }
 
-function SudetiKomentuotojus(comms) {
-    var updatedComms=[]
-
-    fetch(window.backend+"/users",
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },                
-                })
-        .then(res => res.json())
-        .then(a => {
-            for (let user of a) {
-                for (let comment of comms) {
-                    if (comment.fk_komentuotojo_id===user.id) {
-                        let c = {
-                            vardas: user.vardas,
-                            foto: user.profilio_foto,
-                            data: comment.data.slice(0,10),
-                            komentaras: comment.komentaras,
-                        }
-                        if (c.foto=="DEFAULT") {
-                            c.foto=defaultPic
-                        }
-                        updatedComms.push(c)
-                    }
-                }
-            }
-            // console.log(updatedComms)                          
-    });    
-
-    return updatedComms
-}

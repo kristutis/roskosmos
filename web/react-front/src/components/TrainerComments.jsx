@@ -1,8 +1,44 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import defaultPic from '../images/profile-picture.png'
 
 export default function TrainerComments(props) {
-    console.log(props.comms)
-    if (props.comms==null) {
+    const [komentarai, setKomentarai] = useState([])    
+
+    useEffect(() => {
+        const comms=props.comms
+        // console.log(comms)
+        var updatedComms=[]
+        fetch(window.backend+"/users",
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },                
+                    })
+            .then(res => res.json())
+            .then(a => {
+                for (let user of a) {
+                    for (let comment of comms) {
+                        if (comment.fk_komentuotojo_id===user.id) {
+                            let c = {
+                                vardas: user.vardas,
+                                foto: user.profilio_foto,
+                                data: comment.data.slice(0,10),
+                                komentaras: comment.komentaras,
+                            }
+                            if (c.foto=="DEFAULT") {
+                                c.foto=defaultPic
+                            }
+                            updatedComms.push(c)
+                        }
+                    }
+                }    
+                setKomentarai(updatedComms)          
+        });        
+    }, [])
+    
+    if (props.comms.length==0) {
+        console.log(true)
         return (
             <div>
                 <table className="table table-striped table-dark">
@@ -27,7 +63,7 @@ export default function TrainerComments(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.comms.map((c, index) => 
+                    {komentarai ? komentarai.map((c, index) => 
                     <tr>
                         <th scope="row">{index+1}</th>
                         <td>{c.data}</td>
@@ -35,9 +71,11 @@ export default function TrainerComments(props) {
                         <td>{c.vardas}</td>
                         <td>{c.komentaras}</td>                        
                     </tr>
-                    )}                                                         
+                    ) : null}                                                         
                 </tbody>
             </table>
         </div>
     )
 }
+
+
