@@ -1,12 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import TrainerComments from '../components/TrainerComments'
 import './Treneris.css'
-
+import defaultPic from '../images/profile-picture.png'
 
 
 export default function Treneris(props) {
     const trenerioDd = props.match.params.id
-    console.log(isLoggedIn())
+
+    const [komentarai, setKomentarai] = useState([])
+    const [trenerioInfo, setTrenerioInfo] = useState({
+        // aprasymas:"",
+        // kaina:0,
+        // moto:"",
+        // vardas:"",
+        // pavarde:"",
+        // profilio_foto:"",
+    })    
 
     useEffect(() => {
         fetch(window.backend+"/trainers/"+trenerioDd,
@@ -18,9 +27,39 @@ export default function Treneris(props) {
                 })
         .then(res => res.json())
         .then(a => {
-            console.log(a)       
+            // console.log(a)       
+            let ti = {
+                aprasymas:a.aprasymas,
+                kaina:a.kaina,
+                moto:a.moto,
+                vardas:a.user.vardas,
+                pavarde:a.user.pavarde,
+                profilio_foto:a.user.profilio_foto,
+                vertinimas:a.vertinimas,
+            }
+            setTrenerioInfo(ti)            
         });       
+
+        fetch(window.backend+"/comments/"+trenerioDd,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },                
+                })
+        .then(res => res.json())
+        .then(a => {    
+            if (a!=null) {
+                const comms = SudetiKomentuotojus(a)
+                setKomentarai(comms)  
+            } else {
+                setKomentarai(null)
+            }                    
+        });          
     }, [])
+
+    // console.log(trenerioInfo)
+    // console.log(komentarai)
 
     if (isLoggedIn()===false) {
         return 'unauthorised'
@@ -28,14 +67,39 @@ export default function Treneris(props) {
 
     return (
         <div className="first-div">
-            <br></br><h1>Rimulis</h1><br></br>
+            <br></br><h1 className="text-white">{trenerioInfo.vardas + " " + trenerioInfo.pavarde}</h1><br></br>
             <div className="ts container-fluid d-flex justify content-center">
                 <div className="row">
-                    <div className="col-md-6">                        
-                        <img width="100%" height="700" alt=""  src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"/>
+                    <div className="col-md-6">       
+                        <div className="row">    
+                            <div className="col-md-12">                    
+                                <img height="auto" width="70%" alt=""  src={trenerioInfo.profilio_foto}/>
+                                <br></br><br></br>
+                                <h4 className="text-white">{"“"+trenerioInfo.moto+"”"}</h4>
+                                <br></br><br></br>                                                               
+                            </div>
+                            <div className="col-md-12">                    
+                                <table className="table table-secondary" >
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Aprašymas:</th>
+                                            <th scope="col">{trenerioInfo.aprasymas}</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Vertinimas:</th>
+                                            <td><span className="badge badge-primary badge-pill">{trenerioInfo.vertinimas}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Kaina:</th>
+                                            <td><span className="badge badge-primary badge-pill">{trenerioInfo.kaina+"€"}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-md-6">        
-                        <TrainerComments/>
+                        <TrainerComments comms={komentarai}/>
                         <h1>Ivertinimas</h1>
                         <br></br>
                         <h4>komentaras</h4>
@@ -70,4 +134,39 @@ function isLoggedIn() {
         return false
     }
     return true
+}
+
+function SudetiKomentuotojus(comms) {
+    var updatedComms=[]
+
+    fetch(window.backend+"/users",
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },                
+                })
+        .then(res => res.json())
+        .then(a => {
+            for (let user of a) {
+                for (let comment of comms) {
+                    if (comment.fk_komentuotojo_id===user.id) {
+                        let c = {
+                            vardas: user.vardas,
+                            foto: user.profilio_foto,
+                            data: comment.data.slice(0,10),
+                            komentaras: comment.komentaras,
+                        }
+                        if (c.foto=="DEFAULT") {
+                            c.foto=defaultPic
+                        }
+                        console.log(c)
+                        updatedComms.push(c)
+                    }
+                }
+            }
+            // console.log(updatedComms)                          
+    });    
+
+    return updatedComms
 }

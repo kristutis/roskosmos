@@ -35,7 +35,56 @@ func main() {
 	r.HandleFunc("/api/trainers", getTrainers).Methods("GET")
 	r.HandleFunc("/api/trainers/{id}", getTrainersById).Methods("GET")
 
+	//trenerio vertinimai
+	r.HandleFunc("/api/ratings/{id}", getTrainerRatingsById).Methods("GET")
+	r.HandleFunc("/api/raitings/", putRating).Methods("PUT")
+
+	//trenerio komentarai
+	r.HandleFunc("/api/comments/{id}", getTrainerCommentsById).Methods("GET")
+
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
+}
+
+func getTrainerCommentsById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning comments of id: " + param["id"])
+
+	comments, err := getCommentsFromDbByTrainerId(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(comments)
+}
+
+func getTrainerRatingsById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning raitings of id: " + param["id"])
+
+	ratings, err := getRatingsFromDbByTrainerId(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(ratings)
+}
+
+func putRating(w http.ResponseWriter, r *http.Request) {
+	// fmt.Println("putting rating")
+	// w.Header().Set("Content-Type", "application/json")
+
+	// var user User
+	// _ = json.NewDecoder(r.Body).Decode(&user)
+	// if user.Id != param["id"] {
+	// 	json.NewEncoder(w).Encode(false)
+	// 	fmt.Println("ids do not match")
+	// 	return
+	// }
+
+	// success := updateUserToDb(user)
+	// json.NewEncoder(w).Encode(success)
 }
 
 //GET http://localhost:8000/api/trainers/{id}
@@ -111,9 +160,7 @@ func updateUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	param := mux.Vars(r)
 	var user User
-	fmt.Println(r.Body)
-	f := json.NewDecoder(r.Body).Decode(&user)
-	fmt.Println(f, "f")
+	_ = json.NewDecoder(r.Body).Decode(&user)
 	if user.Id != param["id"] {
 		json.NewEncoder(w).Encode(false)
 		fmt.Println("ids do not match")

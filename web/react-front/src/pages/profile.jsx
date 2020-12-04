@@ -105,7 +105,7 @@ export default function Profile() {
                         <br></br><br></br><br></br>
                         <img className="rounded-circle prof-img" src={user.profilio_foto} alt=""/>
                         <br></br><br></br>
-                        <h1 className="text-center text-white">{user.role}</h1>
+                        <h2 className="text-center text-white">{user.role}</h2>
                         <br></br><br></br>
                         <div className="row">                        
                             <input type="text" className="w-50 form-control input-center" defaultValue={user.vardas} onChange={e => setVardas(e.target.value)}/>                       
