@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020 m. Grd 05 d. 01:25
+-- Generation Time: 2020 m. Grd 05 d. 19:34
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,6 +25,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Sukurta duomenų struktūra lentelei `kliento_rezervacijos`
+--
+
+CREATE TABLE `kliento_rezervacijos` (
+  `fk_rezervacijos_id` int(11) NOT NULL,
+  `fk_vartotojo_id` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Sukurta duomenų kopija lentelei `kliento_rezervacijos`
+--
+
+INSERT INTO `kliento_rezervacijos` (`fk_rezervacijos_id`, `fk_vartotojo_id`) VALUES
+(6, '2288af2b00d856e75ae3bfbadaaa11ed323d4f19'),
+(6, '79d10e0cad53f7effe472236e2ae9a05881974fe'),
+(13, '79d10e0cad53f7effe472236e2ae9a05881974fe'),
+(160, '2288af2b00d856e75ae3bfbadaaa11ed323d4f19');
+
+-- --------------------------------------------------------
+
+--
 -- Sukurta duomenų struktūra lentelei `rezervaciju_laikai`
 --
 
@@ -41,19 +62,19 @@ CREATE TABLE `rezervaciju_laikai` (
 --
 
 INSERT INTO `rezervaciju_laikai` (`id`, `laikas_nuo`, `laikas_iki`, `kuri_diena`, `zmoniu_skaicius`) VALUES
-(1, '19:00', '20:00', '2020-12-04', 30),
-(2, '09:00', '10:00', '2020-12-05', 30),
+(1, '19:00', '20:00', '2020-12-04', 15),
+(2, '09:00', '10:00', '2020-12-04', 30),
 (3, '10:00', '11:00', '2020-12-05', 30),
 (4, '11:00', '12:00', '2020-12-05', 30),
 (5, '12:00', '13:00', '2020-12-05', 30),
-(6, '13:00', '14:00', '2020-12-05', 30),
+(6, '13:00', '14:00', '2020-12-05', 28),
 (7, '14:00', '15:00', '2020-12-05', 30),
 (8, '15:00', '16:00', '2020-12-05', 30),
 (9, '16:00', '17:00', '2020-12-05', 30),
 (10, '17:00', '18:00', '2020-12-05', 30),
 (11, '10:00', '11:00', '2020-12-06', 30),
 (12, '11:00', '12:00', '2020-12-06', 30),
-(13, '12:00', '13:00', '2020-12-06', 30),
+(13, '12:00', '13:00', '2020-12-06', 29),
 (14, '13:00', '14:00', '2020-12-06', 30),
 (15, '08:00', '09:00', '2020-12-07', 30),
 (16, '09:00', '10:00', '2020-12-07', 30),
@@ -129,10 +150,10 @@ INSERT INTO `rezervaciju_laikai` (`id`, `laikas_nuo`, `laikas_iki`, `kuri_diena`
 (86, '12:00', '13:00', '2020-12-13', 30),
 (87, '13:00', '14:00', '2020-12-13', 30),
 (88, '08:00', '09:00', '2020-12-14', 30),
-(89, '09:00', '10:00', '2020-12-14', 30),
+(89, '09:00', '10:00', '2020-12-14', 0),
 (90, '10:00', '11:00', '2020-12-14', 30),
 (91, '11:00', '12:00', '2020-12-14', 30),
-(92, '12:00', '13:00', '2020-12-14', 30),
+(92, '12:00', '13:00', '2020-12-14', 0),
 (93, '13:00', '14:00', '2020-12-14', 30),
 (94, '14:00', '15:00', '2020-12-14', 30),
 (95, '15:00', '16:00', '2020-12-14', 30),
@@ -385,6 +406,7 @@ CREATE TABLE `trenerio_komentarai` (
 --
 
 INSERT INTO `trenerio_komentarai` (`fk_komentuotojo_id`, `fk_trenerio_id`, `komentaras`, `data`) VALUES
+('0a62a63dbb923f4528d73ca69069b61a2b06342f', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 'Per brangi kaina', '2020-12-05 00:57:42'),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '2319454c0bac085ee80771c864dde0dfde565db8', 'THE BEST', '2020-12-05 00:18:41'),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 'Gerai nusimano mityboje', '2020-12-05 00:16:23'),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 'Netflix', '2020-12-05 00:09:25'),
@@ -411,6 +433,7 @@ CREATE TABLE `trenerio_vertinimai` (
 --
 
 INSERT INTO `trenerio_vertinimai` (`fk_vertintojo_id`, `fk_trenerio_id`, `ivertinimas`) VALUES
+('0a62a63dbb923f4528d73ca69069b61a2b06342f', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 5),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '19e0753f8488c1403558c63767cb59f4bdf7a73a', 3),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '2319454c0bac085ee80771c864dde0dfde565db8', 5),
 ('2288af2b00d856e75ae3bfbadaaa11ed323d4f19', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 5),
@@ -418,7 +441,8 @@ INSERT INTO `trenerio_vertinimai` (`fk_vertintojo_id`, `fk_trenerio_id`, `iverti
 ('79d10e0cad53f7effe472236e2ae9a05881974fe', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 5),
 ('915afaaa026be388898704c24f5ae90a72618b7a', '2319454c0bac085ee80771c864dde0dfde565db8', 3),
 ('915afaaa026be388898704c24f5ae90a72618b7a', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 1),
-('b08296dbcb76c6ce90e806e80c5a5063ab822301', '2319454c0bac085ee80771c864dde0dfde565db8', 3);
+('b08296dbcb76c6ce90e806e80c5a5063ab822301', '2319454c0bac085ee80771c864dde0dfde565db8', 3),
+('d86478c67661eee2390120b90f94821d391c771e', '2319454c0bac085ee80771c864dde0dfde565db8', 4);
 
 -- --------------------------------------------------------
 
@@ -440,8 +464,8 @@ CREATE TABLE `treneris` (
 
 INSERT INTO `treneris` (`fk_trenerio_id`, `kaina`, `aprasymas`, `moto`, `vertinimas`) VALUES
 ('19e0753f8488c1403558c63767cb59f4bdf7a73a', 9.69, 'Sportininkė nuo 2016 metų', 'Nėra nieko, kas tave stabdytų, išskyrus tave patį', 3),
-('2319454c0bac085ee80771c864dde0dfde565db8', 2.5, 'Pats geriausias treneris ever', 'Nemažink savo tikslų, didink pastangas', 3.67),
-('658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 10.6, 'Aktyvi trenerė', 'Aš trokštu pergalės todėl priimu iššūkius', 3.67),
+('2319454c0bac085ee80771c864dde0dfde565db8', 2.5, 'Pats geriausias treneris ever', 'Nemažink savo tikslų, didink pastangas', 3.75),
+('658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 10.6, 'Aktyvi trenerė', 'Aš trokštu pergalės todėl priimu iššūkius', 4),
 ('9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 50.89, 'Pasaulio čempionas', 'Juk taip smagu daryti tai, kas neįmanoma!', 5);
 
 -- --------------------------------------------------------
@@ -483,6 +507,12 @@ INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `pr
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kliento_rezervacijos`
+--
+ALTER TABLE `kliento_rezervacijos`
+  ADD PRIMARY KEY (`fk_rezervacijos_id`,`fk_vartotojo_id`);
 
 --
 -- Indexes for table `rezervaciju_laikai`

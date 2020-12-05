@@ -2,8 +2,6 @@ import React from 'react'
 import DisplayAllTrenerisCards from '../components/TrenerioCard'
 import './Treneriai.css'
 
-//Gyvenime nėra nieko neįmanoma... Vienintelis klausimas tik, ar užteks drąsos siekti tai, ko iš tiesų nori?
-
 export default function Treneriai() {      
     return (
         <div className="treneriai-div">

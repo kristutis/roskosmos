@@ -19,7 +19,7 @@ export default function LoginModal(props) {
             var found=false
             for (let user of a) {                
                 if (user.email===email && user.slaptazodis===password) {
-                    console.log(user.id)    
+                    // console.log(user.id)    
                     document.cookie = "uid="+user.id;   
                     found=true        
                     window.location.reload(false);                         

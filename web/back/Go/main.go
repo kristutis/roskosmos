@@ -46,12 +46,42 @@ func main() {
 	//rezervaciju laikai
 	r.HandleFunc("/api/reservations", getReservations).Methods("GET")
 	r.HandleFunc("/api/reservations/{id}", getReservationsByUserId).Methods("GET")
+	r.HandleFunc("/api/reservations", postReservation).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
 }
 
-func getReservationsByUserId(w http.ResponseWriter, r *http.Request) {
+func postReservation(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("posting reservation")
+	w.Header().Set("Content-Type", "application/json")
 
+	type Req struct {
+		ResId int    `json:"fk_rezervacijos_id"`
+		Uid   string `json:"fk_vartotojo_id"`
+	}
+	var req Req
+
+	_ = json.NewDecoder(r.Body).Decode(&req)
+
+	err := putReservationToDb(req.ResId, req.Uid)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(nil)
+}
+
+func getReservationsByUserId(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning reservations of id: " + param["id"])
+
+	reservations, err := getReservationsByIdFromDb(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(reservations)
 }
 
 func getReservations(w http.ResponseWriter, r *http.Request) {
