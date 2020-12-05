@@ -43,7 +43,22 @@ func main() {
 	r.HandleFunc("/api/comments/{id}", getTrainerCommentsById).Methods("GET")
 	r.HandleFunc("/api/comments", putTrainerComment).Methods("PUT")
 
+	//rezervaciju laikai
+	r.HandleFunc("/api/reservations", getReservations).Methods("GET")
+	r.HandleFunc("/api/reservations/{id}", getReservationsByUserId).Methods("GET")
+
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
+}
+
+func getReservationsByUserId(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func getReservations(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning reservations")
+	w.Header().Set("Content-Type", "application/json")
+	reservations := getReservationTimesFromDb()
+	json.NewEncoder(w).Encode(reservations)
 }
 
 func getTrainerCommentsById(w http.ResponseWriter, r *http.Request) {
