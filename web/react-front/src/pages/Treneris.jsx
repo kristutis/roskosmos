@@ -73,12 +73,11 @@ export default function Treneris(props) {
         ).then(res => res.json()).then(a => {              
                 if (a===null) {
                     // console.log("viskas ok")
+                    alert('Ačiū už įvertinimą!')
                 } else {
                     console.log(a)
                 }             
-        });
-
-        alert('Ačiū už įvertinimą!')
+        });        
 
         setrating(null)
     }
@@ -125,7 +124,7 @@ export default function Treneris(props) {
                     <div className="col-md-6">       
                         <div className="row">    
                             <div className="col-md-12">                    
-                                <img className="rounded-circle img-thumbnail" height="auto" width="80%" alt=""  src={trenerioInfo.profilio_foto}/>
+                                <img className="rounded-circle img-thumbnail" height="auto" width="60%" alt=""  src={trenerioInfo.profilio_foto}/>
                                 <br></br><br></br>
                                 <h4 className="text-white">{"“"+trenerioInfo.moto+"”"}</h4>
                                 <br></br><br></br>                                                               
