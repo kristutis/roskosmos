@@ -41,6 +41,7 @@ func main() {
 
 	//trenerio komentarai
 	r.HandleFunc("/api/comments/{id}", getTrainerCommentsById).Methods("GET")
+	r.HandleFunc("/api/comments", putTrainerComment).Methods("PUT")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
 }
@@ -69,6 +70,23 @@ func getTrainerRatingsById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(ratings)
+}
+
+func putTrainerComment(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("putting comment")
+	w.Header().Set("Content-Type", "application/json")
+
+	var comment Comment
+	_ = json.NewDecoder(r.Body).Decode(&comment)
+	if comment.CommenterId == comment.TrainerId {
+		err := errors.New("sau komentuoti negalima")
+		fmt.Println(err)
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+
+	err := putCommentToDb(comment)
+	json.NewEncoder(w).Encode(err)
 }
 
 func putRating(w http.ResponseWriter, r *http.Request) {

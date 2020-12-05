@@ -72,9 +72,9 @@ export default function Treneris(props) {
             }
         ).then(res => res.json()).then(a => {              
                 if (a===null) {
-                    console.log("viskas ok")
+                    // console.log("viskas ok")
                 } else {
-                    console.log("neok")
+                    console.log(a)
                 }             
         });
 
@@ -85,7 +85,29 @@ export default function Treneris(props) {
 
     function Komentuoti() {
         if (naujasKomentaras) {
-            console.log(naujasKomentaras)
+            let com = {
+                fk_komentuotojo_id: getCookie('uid'),
+                fk_trenerio_id: trenerioId,
+                komentaras: naujasKomentaras,
+            }
+
+            fetch(window.backend+"/comments",
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(com)
+            }
+            ).then(res => res.json()).then(a => {              
+                    if (a===null) {
+                        alert('Ačiū už atsiliepimą!')
+                    } else if (a.Message.includes("Duplicate entry")) {
+                        alert('Jau komentavote!')
+                    } else {
+                        alert(a)
+                    }    
+            });            
         } else {
             alert("Įrašykite komentarą!")
         }

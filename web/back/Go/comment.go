@@ -12,6 +12,20 @@ type Comment struct {
 	Data        time.Time `json:"data"`
 }
 
+func putCommentToDb(comment Comment) error {
+	db := getDb()
+	defer db.Close()
+
+	q := "INSERT INTO trenerio_komentarai (fk_komentuotojo_id,fk_trenerio_id,komentaras) VALUES ('" + comment.CommenterId + "','" + comment.TrainerId + "','" + comment.Komentaras + "')"
+	_, err := db.Query(q)
+	if err != nil {
+		fmt.Print(err)
+		return err
+	}
+
+	return nil
+}
+
 func getCommentsFromDbByTrainerId(tId string) ([]Comment, error) {
 	db := getDb()
 	defer db.Close()
