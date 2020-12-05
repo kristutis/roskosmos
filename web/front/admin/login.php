@@ -11,11 +11,14 @@ if (isset($_POST['LOGIN'])){
             $_SESSION["admin-Log"] = $user;
         }
 		setcookie("login[Auser]", $user, time() + (86400 * 30), "/");
-        setcookie("login[Apass]", hash('sha256', $pass.$user), time() + (86400 * 30), "/");
+		setcookie("login[Apass]", hash('sha256', $pass.$user), time() + (86400 * 30), "/");
+		header("location: index.php");
+		return;
 	}
 }
 if (isset($_COOKIE["login"]["Auser"]) && isset($_COOKIE["login"]["Apass"])){
 	header("location: index.php");
+	return;
 }
 ?>
 <!DOCTYPE html>

@@ -46,7 +46,7 @@ export default function SalesRezervacija() {
                         <td>{l.zmoniu_skaicius}</td>
                         <td>
                             {l.rezervuota_kliento==true}
-                            {getButton(l.id, l.zmoniu_skaicius, l.rezervuota_kliento, l.kuri_diena)}    
+                            {getButton(l.id, l.zmoniu_skaicius, l.rezervuota_kliento, l.kuri_diena, l.laikas_nuo+ " - " +l.laikas_iki)}    
                         </td>
                     </tr>
                     ) : null}
@@ -57,7 +57,7 @@ export default function SalesRezervacija() {
     
 }
 
-function RezervuotiLaika(id) {    
+function RezervuotiLaika(id, data, laikas) {    
     const uid = getCookie('uid')    
     let rezervacija = {
         fk_rezervacijos_id: id,
@@ -77,9 +77,48 @@ function RezervuotiLaika(id) {
         console.log(a)     
     });          
     alert("rezervuota")
+    IssiustiEmail(uid, data, laikas)    
 }
 
-function getButton(id, zmoniuSk, rezeruotaKliento, data) {
+function IssiustiEmail(uid, data, laikas) {
+    let emailas=""
+    fetch(window.backend+"/users/"+uid,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                          
+            })
+    .then(res => res.json())
+    .then(a => {
+        emailas=a.email
+        let emailoInfo = {
+            email: emailas,
+            pavadinimas: "Nauja rezervacija",
+            zinute: "Sveiki, Jūs užsirezervavote laiką: "+data+", " +laikas+". Lauksime atvykstant!"
+        }
+        console.log(emailoInfo)    
+    
+        fetch("http://localhost/php_emailo_rest_api/api.php",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },                          
+                    body: JSON.stringify(emailoInfo)  
+                })
+        .then(res => res.json())
+        .then(a => {
+            console.log(a)  
+        });       
+        // console.info(emailas)
+
+
+    });       
+    // console.log(emailas)
+}
+
+function getButton(id, zmoniuSk, rezeruotaKliento, data, laikas) {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -103,7 +142,7 @@ function getButton(id, zmoniuSk, rezeruotaKliento, data) {
         return <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Pasirinkta</button>
     }
 
-    return <button type="button" class="btn btn-secondary btn-lg btn-block" id={id} onClick={() => RezervuotiLaika(id)}>Rinktis</button>
+    return <button type="button" class="btn btn-secondary btn-lg btn-block" id={id} onClick={() => RezervuotiLaika(id, data, laikas)}>Rinktis</button>
 }
 
 function getCookie(cname) {
