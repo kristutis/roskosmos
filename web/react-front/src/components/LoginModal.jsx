@@ -65,7 +65,7 @@ export default function LoginModal(props) {
                         <input required type="email" className="form-control" aria-describedby="emailHelp" placeholder="Įrašykite prisijungimo duomenis" onChange={e => setEmail(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1">Slaptažodis</label>
                         <input required type="password" className="form-control" placeholder="Įrašykite prisijungimo duomenis" onChange={e => setPassword(e.target.value)}/>
                     </div>
                     <button type="button" class="btn btn-primary reg-button" value="Prisijungti" onClick={() => login()} >Prisijungti</button>
