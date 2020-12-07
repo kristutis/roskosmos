@@ -33,7 +33,8 @@ func main() {
 
 	//trainers
 	r.HandleFunc("/api/trainers", getTrainers).Methods("GET")
-	r.HandleFunc("/api/trainers/{id}", getTrainersById).Methods("GET")
+	r.HandleFunc("/api/trainers/{id}", getTrainersById).Methods("GET")   ///////////////
+	r.HandleFunc("/api/trainers/{id}", updateTrainerById).Methods("PUT") //////////
 
 	//trenerio vertinimai
 	r.HandleFunc("/api/ratings/{id}", getTrainerRatingsById).Methods("GET")
@@ -47,6 +48,13 @@ func main() {
 	r.HandleFunc("/api/reservations", getReservations).Methods("GET")
 	r.HandleFunc("/api/reservations/{id}", getReservationsByUserId).Methods("GET")
 	r.HandleFunc("/api/reservations", postReservation).Methods("POST")
+
+	//treniruociu programos
+	r.HandleFunc("/api/programs/{id}", getProgramsByUserId).Methods("GET")
+	r.HandleFunc("/api/programs/{id}", addProgramByUserId).Methods("POST") ////////////
+
+	//klientu sarasas
+	r.HandleFunc("/api/clients/{id}", getClientsByUserId).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
 }
@@ -232,4 +240,57 @@ func updateUserById(w http.ResponseWriter, r *http.Request) {
 
 	success := updateUserToDb(user)
 	json.NewEncoder(w).Encode(success)
+}
+
+//PUT		http://localhost:8000/api/trainers/{id}
+func updateTrainerById(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("updating trainer")
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	var trainer Trainer
+	_ = json.NewDecoder(r.Body).Decode(&trainer)
+	if trainer.TrainerId != param["id"] {
+		json.NewEncoder(w).Encode(false)
+		fmt.Println("updating trainer ids do not match")
+		return
+	}
+
+	success := updateTrainer(trainer)
+	json.NewEncoder(w).Encode(success)
+}
+
+func getProgramsByUserId(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning programss of id: " + param["id"])
+
+	prog, err := getProgramsByIdFromDb(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(prog)
+}
+
+func addProgramByUserId(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("adding program")
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	var pro Program
+	_ = json.NewDecoder(r.Body).Decode(&pro)
+	success := putProgramToDb(pro, param["id"])
+	json.NewEncoder(w).Encode(success)
+}
+
+func getClientsByUserId(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning clients of id: " + param["id"])
+
+	cl, err := getClientsByIdFromDb(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(cl)
 }

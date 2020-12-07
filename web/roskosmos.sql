@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020 m. Grd 05 d. 21:57
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Dec 07, 2020 at 02:58 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `kliento_rezervacijos`
+-- Table structure for table `klientai`
+--
+
+CREATE TABLE `klientai` (
+  `klientai_id` int(11) NOT NULL,
+  `treneris_id` varchar(255) NOT NULL,
+  `vartotojas_id` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `klientai`
+--
+
+INSERT INTO `klientai` (`klientai_id`, `treneris_id`, `vartotojas_id`) VALUES
+(1, '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', '4f7272fe71f4c24028e2ca32d5613ec14e2df3e5'),
+(2, '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7'),
+(3, '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', '915afaaa026be388898704c24f5ae90a72618b7a'),
+(4, 'aaaaaaaaaaa', '915afaaa026be388898704c24f5ae90a72618b7a');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kliento_rezervacijos`
 --
 
 CREATE TABLE `kliento_rezervacijos` (
@@ -34,7 +55,7 @@ CREATE TABLE `kliento_rezervacijos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `kliento_rezervacijos`
+-- Dumping data for table `kliento_rezervacijos`
 --
 
 INSERT INTO `kliento_rezervacijos` (`fk_rezervacijos_id`, `fk_vartotojo_id`) VALUES
@@ -52,7 +73,23 @@ INSERT INTO `kliento_rezervacijos` (`fk_rezervacijos_id`, `fk_vartotojo_id`) VAL
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `naujiena`
+-- Table structure for table `klientu_kalendorius`
+--
+
+CREATE TABLE `klientu_kalendorius` (
+  `kalendoriaus_id` int(11) NOT NULL,
+  `treneris` varchar(255) NOT NULL,
+  `klientas` varchar(255) NOT NULL,
+  `programa` int(11) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `laikas_nuo` varchar(255) NOT NULL,
+  `laikas_iki` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `naujiena`
 --
 
 CREATE TABLE `naujiena` (
@@ -62,7 +99,7 @@ CREATE TABLE `naujiena` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `naujiena`
+-- Dumping data for table `naujiena`
 --
 
 INSERT INTO `naujiena` (`id`, `nuotraukos_url`, `turinys`) VALUES
@@ -71,7 +108,7 @@ INSERT INTO `naujiena` (`id`, `nuotraukos_url`, `turinys`) VALUES
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `nuolaida`
+-- Table structure for table `nuolaida`
 --
 
 CREATE TABLE `nuolaida` (
@@ -81,7 +118,7 @@ CREATE TABLE `nuolaida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `nuolaida`
+-- Dumping data for table `nuolaida`
 --
 
 INSERT INTO `nuolaida` (`id`, `kategorija`, `nuolaidos_proc`) VALUES
@@ -90,7 +127,7 @@ INSERT INTO `nuolaida` (`id`, `kategorija`, `nuolaidos_proc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `rezervaciju_laikai`
+-- Table structure for table `rezervaciju_laikai`
 --
 
 CREATE TABLE `rezervaciju_laikai` (
@@ -102,7 +139,7 @@ CREATE TABLE `rezervaciju_laikai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `rezervaciju_laikai`
+-- Dumping data for table `rezervaciju_laikai`
 --
 
 INSERT INTO `rezervaciju_laikai` (`id`, `laikas_nuo`, `laikas_iki`, `kuri_diena`, `zmoniu_skaicius`) VALUES
@@ -416,7 +453,7 @@ INSERT INTO `rezervaciju_laikai` (`id`, `laikas_nuo`, `laikas_iki`, `kuri_diena`
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `sporto_sale`
+-- Table structure for table `sporto_sale`
 --
 
 CREATE TABLE `sporto_sale` (
@@ -426,7 +463,7 @@ CREATE TABLE `sporto_sale` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `sporto_sale`
+-- Dumping data for table `sporto_sale`
 --
 
 INSERT INTO `sporto_sale` (`id`, `adresas`, `darbo_laikas`) VALUES
@@ -435,7 +472,7 @@ INSERT INTO `sporto_sale` (`id`, `adresas`, `darbo_laikas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `trenerio_komentarai`
+-- Table structure for table `trenerio_komentarai`
 --
 
 CREATE TABLE `trenerio_komentarai` (
@@ -446,7 +483,7 @@ CREATE TABLE `trenerio_komentarai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `trenerio_komentarai`
+-- Dumping data for table `trenerio_komentarai`
 --
 
 INSERT INTO `trenerio_komentarai` (`fk_komentuotojo_id`, `fk_trenerio_id`, `komentaras`, `data`) VALUES
@@ -465,7 +502,7 @@ INSERT INTO `trenerio_komentarai` (`fk_komentuotojo_id`, `fk_trenerio_id`, `kome
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `trenerio_vertinimai`
+-- Table structure for table `trenerio_vertinimai`
 --
 
 CREATE TABLE `trenerio_vertinimai` (
@@ -475,7 +512,7 @@ CREATE TABLE `trenerio_vertinimai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `trenerio_vertinimai`
+-- Dumping data for table `trenerio_vertinimai`
 --
 
 INSERT INTO `trenerio_vertinimai` (`fk_vertintojo_id`, `fk_trenerio_id`, `ivertinimas`) VALUES
@@ -490,13 +527,14 @@ INSERT INTO `trenerio_vertinimai` (`fk_vertintojo_id`, `fk_trenerio_id`, `iverti
 ('79d10e0cad53f7effe472236e2ae9a05881974fe', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 5),
 ('915afaaa026be388898704c24f5ae90a72618b7a', '2319454c0bac085ee80771c864dde0dfde565db8', 3),
 ('915afaaa026be388898704c24f5ae90a72618b7a', '658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 1),
+('915afaaa026be388898704c24f5ae90a72618b7a', '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 1),
 ('b08296dbcb76c6ce90e806e80c5a5063ab822301', '2319454c0bac085ee80771c864dde0dfde565db8', 3),
 ('d86478c67661eee2390120b90f94821d391c771e', '2319454c0bac085ee80771c864dde0dfde565db8', 4);
 
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `treneris`
+-- Table structure for table `treneris`
 --
 
 CREATE TABLE `treneris` (
@@ -508,19 +546,44 @@ CREATE TABLE `treneris` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `treneris`
+-- Dumping data for table `treneris`
 --
 
 INSERT INTO `treneris` (`fk_trenerio_id`, `kaina`, `aprasymas`, `moto`, `vertinimas`) VALUES
 ('19e0753f8488c1403558c63767cb59f4bdf7a73a', 9.69, 'Sportininkė nuo 2016 metų', 'Nėra nieko, kas tave stabdytų, išskyrus tave patį', 3.5),
 ('2319454c0bac085ee80771c864dde0dfde565db8', 2.5, 'Pats geriausias treneris ever', 'Nemažink savo tikslų, didink pastangas', 4.17),
 ('658b91d2c7d2b3d1cdb06f7cec76852875ed02b7', 10.6, 'Aktyvi trenerė', 'Aš trokštu pergalės todėl priimu iššūkius', 4),
-('9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 50.89, 'Pasaulio čempionas', 'Juk taip smagu daryti tai, kas neįmanoma!', 5);
+('9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 64.78, 'Pa\nsau\nlio\nčem\npi\no\nnas!', 'Juk taip smagu daryti tai, kas neįmanoma...', 3),
+('aaaaaaaaaaa', 55, 'yes', 'no', 2);
 
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `vartotojas`
+-- Table structure for table `treniruociu_programa`
+--
+
+CREATE TABLE `treniruociu_programa` (
+  `programos_id` int(11) NOT NULL,
+  `pavadinimas` varchar(255) NOT NULL,
+  `trukme` varchar(30) NOT NULL,
+  `aprasymas` text NOT NULL,
+  `kaina` double NOT NULL,
+  `fk_trenerio_id` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `treniruociu_programa`
+--
+
+INSERT INTO `treniruociu_programa` (`programos_id`, `pavadinimas`, `trukme`, `aprasymas`, `kaina`, `fk_trenerio_id`) VALUES
+(1, 'Treniruočių programa raumenų masei VI', 'Savaite', 'Treniruočių programa norint išdirbti raumens masę. Pirmadienis: Platformos spaudimas gulint ant nugaros 4×10 Kojų teisimas 4×12 Kojų lenkimas 4×12 Pritūpimai su štangą (Štanga laikoma priekyje) 4×15 Antradienis: Hantelių stūmimas 4×6 Plėšimas kampu 4×8 Puloveris 4×10 Prancūziškas spaudimas gulint 3×10 Prancūziškas spaudimas sėdint 3×10 Štangos spaudimas siaurai 3×10 Ketvirtadienis: Nusilenkimai nugarai 3×8 Platūs prisitraukimai 3xMAX Štangos trauka 3×8 Bicepsas su štanga 4×8 Plaktukas su hanteliais bicepsui 3×8 Bicepsas ant suolelio 3×8 Penktadienis Štangos spaudimas už kaklo 3×8 Hantelių kėlimas į šalis 3×10 Hantelių kėlimas priešais save 3×8 Blauzda sėdint 3×12 Atsilenkimai 3×15 Šeštadienis: Įtūpstai 3×15 Kojų tiesimas 2×20 Kojų lenkimas 2×20 Platformos spaudimas 3×15', 62.78, '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4'),
+(2, 'Naujokams: Treniruočių programa merginoms su savo kūno svoriu I', '20min', 'Prieš pradėdami sportuoti ir atlikinėti pratimus padarykite apšilimą. „Australiški“ prisitraukimai 3 x 7 Pritūpimai 3 x 8 Atsispaudimai ant suolelio tricepsui 3 x 8 Kabėjimas ant skersinio 3 x MAX Šokinėjimas su šokdyne 3 x 1min Nepilni atsilenkimai 3 x 15 Pasistiebimai blauzdai 3 x 15 Įtūpstai kiekvienai kojai 3 x 8 Po treniruotės nepamirškite atlikti tempimo pratimo visiems kūno raumenims, tai paskatins raumenų atsistatymą, progresą ir išvengsite rimtesnių traumų.', 14.99, '9f0002fe074eb85bdc91a1c3a419095f97d9ddd4'),
+(3, 'Naujokams: Treniruočių programa merginoms su savo kūno svoriu II', '40min', 'Prieš pradėdami sportuoti ir atlikinėti pratimus padarykite apšilimą. „Australiški“ prisitraukimai 5 x 7 Pritūpimai 5 x 8 Atsispaudimai ant suolelio tricepsui 5 x 8 Kabėjimas ant skersinio 3 x MAX Šokinėjimas su šokdyne 5 x 2min Nepilni atsilenkimai 3 x 20 Pasistiebimai blauzdai 3 x 15 Įtūpstai kiekvienai kojai 3 x 8 Po treniruotės nepamirškite atlikti tempimo pratimo visiems kūno raumenims, tai paskatins raumenų atsistatymą, progresą ir išvengsite rimtesnių traumų.', 20.11, '19e0753f8488c1403558c63767cb59f4bdf7a73a');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vartotojas`
 --
 
 CREATE TABLE `vartotojas` (
@@ -536,7 +599,7 @@ CREATE TABLE `vartotojas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Sukurta duomenų kopija lentelei `vartotojas`
+-- Dumping data for table `vartotojas`
 --
 
 INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `profilio_foto`, `reg_date`, `modify_date`, `role`) VALUES
@@ -550,6 +613,7 @@ INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `pr
 ('7dc6b37542c39af4b4e3e06f51d5aa6c9c58a944', 'Alina', 'Fiodorova', 'alionochka@yandex.ru', 'al1on0va', 'DEFAULT', '2020-11-20 14:29:35', '2020-11-20 23:12:13', 'KLIENTAS'),
 ('915afaaa026be388898704c24f5ae90a72618b7a', 'gedas', 'kekstas', 'kekstasgedas@gmail.com', 'pass123', 'https://scontent.fkun1-1.fna.fbcdn.net/v/t1.0-9/39944380_1985209388210390_4630112373020033024_o.jpg?_nc_cat=110&_nc_map=test-rt&ccb=2&_nc_sid=09cbfe&_nc_ohc=PcNXkMD-wlkAX9LnQTm&_nc_ht=scontent.fkun1-1.fna&oh=37f9dfd7cfec7c847cf62f5b356ef1d4&oe=5FDEEF5A', '2020-11-20 12:08:39', '2020-11-20 12:10:37', 'KLIENTAS'),
 ('9f0002fe074eb85bdc91a1c3a419095f97d9ddd4', 'Dovydas', 'Kavaliauskas', 'dovyzas@gmail.com', 'd0v33', 'https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70', '2020-11-20 20:28:23', '2020-11-20 20:31:14', 'TRENERIS'),
+('aaaaaaaaaaa', 'vardas', 'pavardas', 'borbonisimo@gmail.com', 'pass', 'DEFAULT', '2020-12-07 01:49:54', '2020-12-07 01:50:03', 'TRENERIS'),
 ('b08296dbcb76c6ce90e806e80c5a5063ab822301', 'testas', 'testauskas', 'test@gmail.com', 'testas123', 'DEFAULT', '2020-11-19 17:05:59', '2020-11-19 17:05:59', 'KLIENTAS'),
 ('d86478c67661eee2390120b90f94821d391c771e', 'Sausainyzas', 'Sausainiusas', 'susazas@gmail.com', '4asdg69asd4g', '/images/profile_samples/4.jpg', '2020-11-20 14:28:19', '2020-11-21 19:17:47', 'KLIENTAS');
 
@@ -558,10 +622,27 @@ INSERT INTO `vartotojas` (`id`, `vardas`, `pavarde`, `email`, `slaptazodis`, `pr
 --
 
 --
+-- Indexes for table `klientai`
+--
+ALTER TABLE `klientai`
+  ADD PRIMARY KEY (`klientai_id`),
+  ADD KEY `fk_vartotojas` (`vartotojas_id`),
+  ADD KEY `treneris_id` (`treneris_id`);
+
+--
 -- Indexes for table `kliento_rezervacijos`
 --
 ALTER TABLE `kliento_rezervacijos`
   ADD PRIMARY KEY (`fk_rezervacijos_id`,`fk_vartotojo_id`);
+
+--
+-- Indexes for table `klientu_kalendorius`
+--
+ALTER TABLE `klientu_kalendorius`
+  ADD PRIMARY KEY (`kalendoriaus_id`),
+  ADD KEY `treneris` (`treneris`,`klientas`,`programa`),
+  ADD KEY `fk_klientas` (`klientas`),
+  ADD KEY `fk_programa` (`programa`);
 
 --
 -- Indexes for table `naujiena`
@@ -606,6 +687,13 @@ ALTER TABLE `treneris`
   ADD PRIMARY KEY (`fk_trenerio_id`);
 
 --
+-- Indexes for table `treniruociu_programa`
+--
+ALTER TABLE `treniruociu_programa`
+  ADD PRIMARY KEY (`programos_id`),
+  ADD KEY `fk_trenerio_id` (`fk_trenerio_id`);
+
+--
 -- Indexes for table `vartotojas`
 --
 ALTER TABLE `vartotojas`
@@ -614,6 +702,18 @@ ALTER TABLE `vartotojas`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `klientai`
+--
+ALTER TABLE `klientai`
+  MODIFY `klientai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `klientu_kalendorius`
+--
+ALTER TABLE `klientu_kalendorius`
+  MODIFY `kalendoriaus_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rezervaciju_laikai`
@@ -626,6 +726,37 @@ ALTER TABLE `rezervaciju_laikai`
 --
 ALTER TABLE `sporto_sale`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `treniruociu_programa`
+--
+ALTER TABLE `treniruociu_programa`
+  MODIFY `programos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `klientai`
+--
+ALTER TABLE `klientai`
+  ADD CONSTRAINT `fk_vartotojas` FOREIGN KEY (`vartotojas_id`) REFERENCES `vartotojas` (`id`),
+  ADD CONSTRAINT `treneris_fk` FOREIGN KEY (`treneris_id`) REFERENCES `treneris` (`fk_trenerio_id`);
+
+--
+-- Constraints for table `klientu_kalendorius`
+--
+ALTER TABLE `klientu_kalendorius`
+  ADD CONSTRAINT `fk_klientas` FOREIGN KEY (`klientas`) REFERENCES `vartotojas` (`id`),
+  ADD CONSTRAINT `fk_programa` FOREIGN KEY (`programa`) REFERENCES `treniruociu_programa` (`programos_id`),
+  ADD CONSTRAINT `fk_treneris` FOREIGN KEY (`treneris`) REFERENCES `treneris` (`fk_trenerio_id`);
+
+--
+-- Constraints for table `treniruociu_programa`
+--
+ALTER TABLE `treniruociu_programa`
+  ADD CONSTRAINT `fk_trenerio_id` FOREIGN KEY (`fk_trenerio_id`) REFERENCES `treneris` (`fk_trenerio_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

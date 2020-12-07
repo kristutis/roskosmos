@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../images/logo.jpg'
 import LoginModal from './LoginModal'
 import ClientMenu from './menus/ClientMenu'
+import TrainerMenu from './menus/TrainerMenu'
 import GuestMenu from './menus/GuestMenu'
 import SignupModal from './SignupModal'
 
@@ -32,6 +33,8 @@ function NavBar() {
         switch(role) {
             case 'KLIENTAS':
                 return <ClientMenu/>
+            case 'TRENERIS':
+                return <TrainerMenu/>
             default:
                 return <GuestMenu onModalClick={setLoginModalIsOpen} onSignUpClick={setSignupModalIsOpen}/>
         }

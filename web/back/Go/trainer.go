@@ -5,9 +5,10 @@ import (
 	"fmt"
 )
 
+//Trainer
 type Trainer struct {
 	User        User    `json:"user"`
-	TrainerId   string  `json:"fk_trenerio_id "`
+	TrainerId   string  `json:"fk_trenerio_id"`
 	Price       float64 `json:"kaina"`
 	Discription string  `json:"aprasymas"`
 	Moto        string  `json:"moto"`
@@ -57,4 +58,24 @@ func getTrainerUser(id string) User {
 	}
 	var u User
 	return u
+}
+
+func updateTrainer(trainer Trainer) bool {
+	fmt.Println(trainer)
+	if trainer.Discription == "" || trainer.Moto == "" || trainer.Price == 0 {
+		fmt.Println("empty trainer modify fields or price not read")
+		return false
+	}
+
+	db := getDb()
+	defer db.Close()
+	q, err := db.Prepare("UPDATE treneris SET kaina=?, aprasymas=?, moto=? where fk_trenerio_id=?")
+	if err != nil {
+		fmt.Println("updating trainer err")
+		fmt.Println(err)
+		return false
+	} else {
+		q.Exec(trainer.Price, trainer.Discription, trainer.Moto, trainer.TrainerId)
+	}
+	return true
 }
