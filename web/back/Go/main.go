@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -49,6 +48,16 @@ func main() {
 	r.HandleFunc("/api/reservations/{id}", getReservationsByUserId).Methods("GET")
 	r.HandleFunc("/api/reservations", postReservation).Methods("POST")
 
+	//prekes
+	r.HandleFunc("/api/goods", getGoods).Methods("GET")
+	r.HandleFunc("/api/goods/{id}", getGoodsById).Methods("GET")
+
+	//uzsakymai
+	r.HandleFunc("/api/order", addOrder).Methods("PUT")
+
+	//Saskaitos 
+	r.HandleFunc("/api/receipts/{id}", getReceiptsByUserId).Methods("GET")
+
 	//treniruociu programos
 	r.HandleFunc("/api/programs/{id}", getProgramsByUserId).Methods("GET")
 	r.HandleFunc("/api/programs/{id}", addProgramByUserId).Methods("POST") ////////////
@@ -57,6 +66,51 @@ func main() {
 	r.HandleFunc("/api/clients/{id}", getClientsByUserId).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(headers, methods, origins)(r)))
+}
+
+func getReceiptsByUserId(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning reservations of id: " + param["id"])
+
+	receipts, err := getReceiptsByIdFromDb(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(receipts)
+}
+
+func addOrder(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("adding an order")
+	w.Header().Set("Content-Type", "application/json")
+	var order Order
+	_ = json.NewDecoder(r.Body).Decode(&order)
+	err := addOrderToDb(order)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(nil)
+}
+
+func getGoodsById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	param := mux.Vars(r)
+	fmt.Println("returning goods of id: " + param["id"])
+	goods, err := getGoodsByIdFromDb(param["id"])
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+	json.NewEncoder(w).Encode(goods)
+}
+
+func getGoods(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("returning goods")
+	w.Header().Set("Content-Type", "application/json")
+	goods:= getGoodsByFromDb()
+	json.NewEncoder(w).Encode(goods)
 }
 
 func postReservation(w http.ResponseWriter, r *http.Request) {

@@ -41,12 +41,12 @@ function ClientMenu() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/" className="navbar-logo">
+                        <Link to="/prekes" className="navbar-logo">
                             <span className="nav-link" >Prekių katalogas <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/" className="navbar-logo">
+                        <Link to="/saskaitos" className="navbar-logo">
                             <span className="nav-link" >Sąskaitos <span className="sr-only">(current)</span></span>
                         </Link>
                     </li>

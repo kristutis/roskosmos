@@ -7,4 +7,7 @@
 	<a id="nuol-nauj" href="nuolaidos-naujienos.php">Nuolaidos ir naujienos</a>
 	<a id="reklamos" href="reklamos.php">Reklamos siuntimas</a>
 	<a id="nariai" href="nariai.php">Nariai</a>
+	<a id="sandelys" href="sandelys.php">Sandelys</a>
+	<a id="prideti" href="prideti.php">Prideti</a>
+	<a id="uzsakymai" href="uzsakymai.php">Užsakymų ataskaitos</a>
 </div>
