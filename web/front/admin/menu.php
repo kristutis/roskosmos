@@ -10,4 +10,5 @@
 	<a id="sandelys" href="sandelys.php">Sandelys</a>
 	<a id="prideti" href="prideti.php">Prideti</a>
 	<a id="uzsakymai" href="uzsakymai.php">Užsakymų ataskaitos</a>
+	<a id="inventoriaus-katalogas" href="inventoriauskatalogas.php">Inventoriaus valdymas</a>
 </div>
